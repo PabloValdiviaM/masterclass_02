@@ -5,7 +5,7 @@ const dns = require('dns').promises;
 const os = require('os');
 const net = require('net');
 
-// Health Check Endpoint (For Dokploy Health Checks)
+// Health Check Endpoint (Dokploy / System Health Check)
 router.get('/health', (req, res) => {
   const dbStatus = db.getDbStatus();
   res.json({
@@ -13,12 +13,12 @@ router.get('/health', (req, res) => {
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     version: '1.0.0',
-    platform: 'Dokploy CI/CD Live Demo',
+    platform: 'Coffee Rapid Production Suite',
     database: dbStatus
   });
 });
 
-// List products
+// List products / beverages
 router.get('/products', async (req, res) => {
   try {
     const products = await db.getProducts();
@@ -32,36 +32,81 @@ router.get('/products', async (req, res) => {
   }
 });
 
-// Add new product
+// Add new beverage
 router.post('/products', async (req, res) => {
   try {
-    const { name, category, price, stock, image, description } = req.body;
+    const { name, category, price, stock, specialty_level, temperature, origin, roast, tasting_notes, image, description } = req.body;
     if (!name || price === undefined) {
       return res.status(400).json({ success: false, error: 'Nombre y precio son requeridos.' });
     }
-    const product = await db.addProduct({ name, category, price, stock, image, description });
-    res.status(201).json({ success: true, message: 'Producto creado exitosamente', data: product });
+    const product = await db.addProduct({
+      name,
+      category,
+      price,
+      stock,
+      specialty_level,
+      temperature,
+      origin,
+      roast,
+      tasting_notes,
+      image,
+      description
+    });
+    res.status(201).json({ success: true, message: 'Bebida creada exitosamente', data: product });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
 
-// Delete product
+// Delete beverage
 router.delete('/products/:id', async (req, res) => {
   try {
     const { id } = req.params;
     await db.deleteProduct(id);
-    res.json({ success: true, message: `Producto ${id} eliminado.` });
+    res.json({ success: true, message: `Bebida con ID ${id} eliminada.` });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
 });
 
-// Reset initial products
+// Consumer & client consumption metrics
+router.get('/metrics', (req, res) => {
+  try {
+    const metrics = db.getConsumerMetrics();
+    res.json({
+      success: true,
+      timestamp: new Date().toISOString(),
+      data: metrics
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Simulated orders
+router.get('/orders', (req, res) => {
+  try {
+    const orders = db.getOrders();
+    res.json({ success: true, count: orders.length, data: orders });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+router.post('/orders', (req, res) => {
+  try {
+    const newOrder = db.addOrder(req.body);
+    res.status(201).json({ success: true, message: 'Orden generada exitosamente', data: newOrder });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Reset initial products to default Coffee Rapid 10 drinks
 router.post('/reset', async (req, res) => {
   try {
     await db.resetProducts();
-    res.json({ success: true, message: 'Datos demo restablecidos.' });
+    res.json({ success: true, message: 'Catálogo oficial de Coffee Rapid restablecido con éxito.' });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -81,6 +126,7 @@ function checkTcpPort(host, port = 3306, timeout = 300) {
       resolve({ host, port, open: false, reason: 'timeout' });
     });
     socket.once('error', (err) => {
+      socket.destroy();
       resolve({ host, port, open: false, reason: err.code || err.message });
     });
     socket.connect(port, host);

@@ -92,14 +92,15 @@ if (hasBuild(ecommercePath)) {
       </head>
       <body>
         <div class="card">
-          <h1>🚀 NextCollege Rapid Platform</h1>
-          <div class="badge">Listo para Dokploy CI/CD</div>
+          <h1>☕ Coffee Rapid &bull; Plataforma Comercial</h1>
+          <div class="badge">Café de Especialidad &bull; Dokploy CI/CD</div>
           <p>Servidor backend activo. Si estás viendo esta pantalla localmente, ejecuta <code>npm run build:all</code> para compilar las 3 capas, o despliega en Dokploy usando el <code>Dockerfile</code>.</p>
           <div class="links">
+            <a class="btn" href="/">☕ Landing E-commerce</a>
             <a class="btn" href="/app">📱 PWA Mobile</a>
             <a class="btn" href="/admin">⚙️ Panel Admin</a>
             <a class="btn" style="background:#10b981;" href="/api/health">🩺 Health Check</a>
-            <a class="btn" style="background:#6366f1;" href="/api/products">📦 API Productos</a>
+            <a class="btn" style="background:#6366f1;" href="/api/products">☕ Catálogo Bebidas</a>
           </div>
           <div class="status">
             <div>• Puerto: ${PORT}</div>
@@ -118,11 +119,13 @@ async function start() {
   await db.initDB();
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`=======================================================`);
-    console.log(`🚀 NextCollege Platform ejecutándose en puerto ${PORT}`);
+    console.log(`☕ Coffee Rapid Platform ejecutándose en puerto ${PORT}`);
     console.log(`   - E-commerce:  http://localhost:${PORT}/`);
     console.log(`   - PWA Mobile:  http://localhost:${PORT}/app`);
     console.log(`   - Panel Admin: http://localhost:${PORT}/admin`);
     console.log(`   - API Health:  http://localhost:${PORT}/api/health`);
+    console.log(`   - API Bebidas: http://localhost:${PORT}/api/products`);
+    console.log(`   - API Métricas: http://localhost:${PORT}/api/metrics`);
     console.log(`=======================================================`);
   });
 }

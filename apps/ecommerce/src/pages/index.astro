@@ -1,6 +1,160 @@
 ---
 // apps/ecommerce/src/pages/index.astro
-const title = "Bienvenidos a NextCollege";
+const title = "Coffee Rapid | Café de Especialidad & Tostaduría";
+const metaDescription = "Descubre Coffee Rapid: Café de especialidad de origen ético, bebidas calientes de autor y extracciones frías premium. Pide en línea con entrega ultra rápida.";
+
+const featuredCoffees = [
+  {
+    id: 1,
+    name: "Rey de los cafes",
+    category: "Bebidas Calientes",
+    temperature: "Caliente",
+    price: "$6.50",
+    specialtyLevel: "Especialidad 94 pts SCA (Microlote)",
+    origin: "Finca El Paraíso, Huila, Colombia (1,950 msnm)",
+    process: "Lavado con Fermentación Anaerobia 48h",
+    roast: "Tueste Medio Claro",
+    notes: ["Jazmín", "Flor de café", "Bergamota", "Miel pura"],
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&auto=format&fit=crop&q=80",
+    description: "Nuestra creación cumbre: espresso doble de variedad Geisha con microespuma sedosa de leche de granja y un delicado velo aromático de canela de Ceilán.",
+    pairing: "Tarta de almendras o croissant de mantequilla francesa"
+  },
+  {
+    id: 2,
+    name: "Cafe Real Caliente",
+    category: "Bebidas Calientes",
+    temperature: "Caliente",
+    price: "$5.20",
+    specialtyLevel: "Especialidad 91 pts SCA",
+    origin: "Tarrazú, Costa Rica (1,800 msnm)",
+    process: "Honey Dorado",
+    roast: "Tueste Medio Artesanal",
+    notes: ["Avellana tostada", "Toffee", "Cacao 70%", "Cardamomo"],
+    image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=800&auto=format&fit=crop&q=80",
+    description: "Extracción doble de café arábica con microespuma aterciopelada, sutil infusión de avellanas del bosque y corona de crema real dulce.",
+    pairing: "Galletas de canela o brownie de chocolate oscuro"
+  },
+  {
+    id: 3,
+    name: "Cafe Real helado",
+    category: "Bebidas Frías",
+    temperature: "Fría",
+    price: "$5.80",
+    specialtyLevel: "Especialidad 92 pts SCA",
+    origin: "Yirgacheffe, Etiopía (2,100 msnm)",
+    process: "Lavado tradicional",
+    roast: "Omni-Roast Cold Infusion",
+    notes: ["Vainilla Bourbon", "Caramelo salado", "Arándano", "Cuerpo sedoso"],
+    image: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=800&auto=format&fit=crop&q=80",
+    description: "Cold brew reposado durante 20 horas en barricas de roble, combinado con leche infusionada en vainas de vainilla de Madagascar y hielo cristalino filtrado.",
+    pairing: "Cheesecake de frutos rojos o roll de canela glaseado"
+  },
+  {
+    id: 4,
+    name: "Cafe Doble Especial",
+    category: "Bebidas Calientes",
+    temperature: "Caliente",
+    price: "$4.80",
+    specialtyLevel: "Especialidad 90 pts SCA",
+    origin: "Blend Nariño & Antioquia, Colombia (1,900 msnm)",
+    process: "Lavado ecológico",
+    roast: "Tueste Medio Oscuro Equilibrado",
+    notes: ["Chocolate amargo", "Panela orgánica", "Nuez moscada"],
+    image: "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&auto=format&fit=crop&q=80",
+    description: "Doble ristretto potente calibrado a 9 bares de presión con ratio 1:2. Proporciona una crema dorada de gran densidad y una intensidad aromática inigualable.",
+    pairing: "Trufas de chocolate negro o biscotti de almendra"
+  },
+  {
+    id: 5,
+    name: "Cold Brew Nitro Real",
+    category: "Bebidas Frías",
+    temperature: "Fría",
+    price: "$5.50",
+    specialtyLevel: "Especialidad 89 pts SCA",
+    origin: "Nyeri AA, Kenia (1,850 msnm)",
+    process: "Totalmente Lavado",
+    roast: "Tueste Medio Claro",
+    notes: ["Grosella negra", "Mora silvestre", "Espuma cremosa nitro"],
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&auto=format&fit=crop&q=80",
+    description: "Infusión fría de 24 horas inyectada con microburbujas de nitrógeno puro, creando un efecto cascada hipnótico y una textura similar a la seda.",
+    pairing: "Tarta de limón y merengue o scones ingleses"
+  },
+  {
+    id: 6,
+    name: "Caramel Velvet Macchiato",
+    category: "Bebidas Calientes",
+    temperature: "Caliente",
+    price: "$5.40",
+    specialtyLevel: "Especialidad 88 pts SCA",
+    origin: "Antigua Los Volcanes, Guatemala (1,700 msnm)",
+    process: "Lavado de montaña",
+    roast: "Tueste Medio",
+    notes: ["Caramelo de mantequilla", "Vainilla", "Manzana horneada"],
+    image: "https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=800&auto=format&fit=crop&q=80",
+    description: "Leche vaporizada con dulzor natural, shot de espresso vertido delicadamente en capas y sirope de caramelo salado cocinado artesanalmente en nuestro obrador.",
+    pairing: "Pancakes con jarabe de arce o galletas de avena"
+  },
+  {
+    id: 7,
+    name: "Mocha Suizo Blanco",
+    category: "Bebidas Calientes",
+    temperature: "Caliente",
+    price: "$5.60",
+    specialtyLevel: "Especialidad 89 pts SCA",
+    origin: "Huila Supremo, Colombia (1,750 msnm)",
+    process: "Lavado tradicional",
+    roast: "Tueste Medio",
+    notes: ["Chocolate blanco suizo", "Vainilla tahitiana", "Nibs de cacao"],
+    image: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=800&auto=format&fit=crop&q=80",
+    description: "La fusión perfecta entre manteca pura de cacao suizo derretida a baja temperatura, espresso de especialidad recién molido y microespuma sedosa a 65°C.",
+    pairing: "Macarons de frambuesa o cruasán de pistacho"
+  },
+  {
+    id: 8,
+    name: "Frappé Real Avellana & Cacao",
+    category: "Bebidas Frías",
+    temperature: "Fría",
+    price: "$5.90",
+    specialtyLevel: "Especialidad 88 pts SCA",
+    origin: "Cerrado Mineiro, Brasil (1,200 msnm)",
+    process: "Natural Secado al Sol",
+    roast: "Tueste Medio Oscuro",
+    notes: ["Avellana del Piamonte", "Praliné", "Cacao belga"],
+    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800&auto=format&fit=crop&q=80",
+    description: "Batido frappé helado de doble shot de espresso, pasta de avellanas naturales, leche entera o de avena, coronado con chantilly casero y virutas de cacao.",
+    pairing: "Waffle belga caliente o tarta selva negra"
+  },
+  {
+    id: 9,
+    name: "Espresso Tonic Cítrico",
+    category: "Bebidas Frías",
+    temperature: "Fría",
+    price: "$5.10",
+    specialtyLevel: "Especialidad 93 pts SCA",
+    origin: "Guji Shakiso Orgánico, Etiopía (2,200 msnm)",
+    process: "Lavado orgánico",
+    roast: "Tueste Claro Nórdico",
+    notes: ["Pomelo rosado", "Lima kaffir", "Jazmín", "Tónica botánica"],
+    image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=800&auto=format&fit=crop&q=80",
+    description: "La cumbre de la frescura: espresso etíope floral en suspensión sobre agua tónica artesanal con hielo en cubo transparente y una rodaja deshidratada de pomelo.",
+    pairing: "Tarta de lima o tostada con aguacate y queso de cabra"
+  },
+  {
+    id: 10,
+    name: "Flat White Origen Único",
+    category: "Bebidas Calientes",
+    temperature: "Caliente",
+    price: "$4.90",
+    specialtyLevel: "Especialidad 92 pts SCA",
+    origin: "Nyamasheke Red Bourbon, Ruanda (1,900 msnm)",
+    process: "Lavado de estación",
+    roast: "Tueste Medio Claro",
+    notes: ["Miel silvestre", "Mandarina dulce", "Ciruela", "Seda láctea"],
+    image: "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=800&auto=format&fit=crop&q=80",
+    description: "Doble ristretto con microespuma ultrafina y homogénea sin aire visible, logrando un balance perfecto donde prevalece la identidad del grano africano.",
+    pairing: "Brioche tostado o galleta sablé de mantequilla"
+  }
+];
 ---
 
 <!DOCTYPE html>
@@ -9,126 +163,1311 @@ const title = "Bienvenidos a NextCollege";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
+  <meta name="description" content={metaDescription} />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #090d16;
-      --card: #131b2e;
-      --border: #1e293b;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --primary: #2563eb;
+      --bg-page: #FAF7F2;
+      --bg-card: #FFFFFF;
+      --bg-surface: #F5EFE6;
+      --text-main: #24160F;
+      --text-muted: #6E5E52;
+      --text-light: #9B8A7E;
+      --border-color: #EBDDCF;
+      --border-light: #F2E9DE;
+      
+      --accent-gold: #C28E3A;
+      --accent-gold-hover: #A67528;
+      --accent-gold-light: #FFF9ED;
+      --accent-gold-border: #F1D49B;
+      
+      --accent-espresso: #3A2012;
+      --badge-hot-bg: #FFF1EB;
+      --badge-hot-text: #C2410C;
+      --badge-hot-border: #FDBA74;
+      
+      --badge-cold-bg: #F0F9FF;
+      --badge-cold-text: #0284C7;
+      --badge-cold-border: #BAE6FD;
+
+      --shadow-sm: 0 2px 8px rgba(36, 22, 15, 0.04);
+      --shadow-md: 0 8px 24px rgba(36, 22, 15, 0.06), 0 2px 6px rgba(36, 22, 15, 0.03);
+      --shadow-lg: 0 20px 40px -10px rgba(36, 22, 15, 0.1), 0 6px 12px -2px rgba(36, 22, 15, 0.04);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      text-align: center;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(37, 99, 235, 0.1);
-      border: 1px solid rgba(37, 99, 235, 0.3);
-      color: #38bdf8;
-      padding: 0.4rem 1rem;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-    h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-      background: linear-gradient(135deg, #ffffff 40%, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    p {
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin-bottom: 2.5rem;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .nav-cards {
+
+    /* Top Announcement Bar */
+    .top-banner {
+      background: linear-gradient(90deg, #24160F, #3D2214);
+      color: #FAF7F2;
+      padding: 0.6rem 1rem;
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       display: flex;
-      gap: 1.25rem;
-      flex-wrap: wrap;
       justify-content: center;
-      max-width: 700px;
+      align-items: center;
+      gap: 0.75rem;
     }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1.25rem 1.75rem;
-      border-radius: 1rem;
-      text-decoration: none;
-      color: var(--text);
+    .top-banner strong {
+      color: #F8D38D;
+      font-weight: 700;
+    }
+
+    /* Header Navigation */
+    header.main-header {
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    .header-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--accent-gold);
+      color: white;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(194, 142, 58, 0.3);
+    }
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--accent-espresso);
+    }
+    .brand-text span {
+      font-size: 0.72rem;
       font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-gold);
     }
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--primary);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
     }
-    footer {
-      margin-top: 4rem;
-      font-size: 0.85rem;
+    .nav-links a {
+      text-decoration: none;
       color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover {
+      color: var(--accent-gold-hover);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .btn-gold {
+      background: var(--accent-gold);
+      color: #FFFFFF;
+      box-shadow: 0 6px 16px rgba(194, 142, 58, 0.25);
+    }
+    .btn-gold:hover {
+      background: var(--accent-gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(194, 142, 58, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border-color: var(--border-color);
+    }
+    .btn-outline:hover {
+      background: var(--bg-surface);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold-hover);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-gold-light);
+      border: 1px solid var(--accent-gold-border);
+      color: var(--accent-gold-hover);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 3.6rem;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--accent-espresso);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-title span {
+      font-style: italic;
+      color: var(--accent-gold);
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2.25rem;
+      max-width: 580px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .metric-item h4 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--accent-espresso);
+      line-height: 1.1;
+    }
+    .metric-item p {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 0.25rem;
+    }
+
+    .hero-card-preview {
+      position: relative;
+    }
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 8px solid #FFFFFF;
+      background: white;
+    }
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .hero-floating-badge {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: #FFFFFF;
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 280px;
+    }
+    .floating-icon {
+      font-size: 2rem;
+      background: var(--accent-gold-light);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    /* Philosophy / Value propositions */
+    .section-values {
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 4.5rem 1.5rem;
+    }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3.5rem;
+    }
+    .section-subtitle {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--accent-espresso);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .value-box {
+      background: var(--bg-page);
+      border: 1px solid var(--border-light);
+      padding: 2.25rem 1.75rem;
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+    }
+    .value-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-gold-border);
+      background: #FFFFFF;
+    }
+    .value-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+    .value-box h3 {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--accent-espresso);
+      margin-bottom: 0.65rem;
+    }
+    .value-box p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* Catalog Section */
+    .catalog-section {
+      padding: 5rem 1.5rem 6rem;
+    }
+    .catalog-filters {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+      background: #FFFFFF;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent-espresso);
+      color: #FFFFFF;
+      border-color: var(--accent-espresso);
+      box-shadow: 0 4px 12px rgba(58, 32, 18, 0.2);
+    }
+
+    .coffees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2.25rem;
+    }
+    .coffee-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+    .coffee-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-gold-border);
+    }
+    .card-img-wrap {
+      position: relative;
+      height: 230px;
+      overflow: hidden;
+      background: #F0EAE1;
+    }
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .coffee-card:hover .card-img-wrap img {
+      transform: scale(1.05);
+    }
+    .card-badges {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+    .badge-temp {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(8px);
+    }
+    .badge-temp.hot {
+      background: rgba(255, 241, 235, 0.95);
+      color: var(--badge-hot-text);
+      border: 1px solid var(--badge-hot-border);
+    }
+    .badge-temp.cold {
+      background: rgba(240, 249, 255, 0.95);
+      color: var(--badge-cold-text);
+      border: 1px solid var(--badge-cold-border);
+    }
+
+    .badge-sca {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--accent-gold-light);
+      color: #92400E;
+      border: 1px solid var(--accent-gold-border);
+      padding: 0.32rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .card-title-row {
+      margin-bottom: 0.75rem;
+    }
+    .coffee-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-espresso);
+      line-height: 1.3;
+    }
+    .coffee-origin {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-light);
+      margin-top: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .coffee-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .coffee-notes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .note-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--bg-surface);
+      color: var(--accent-espresso);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .card-footer {
+      margin-top: auto;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .price-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .price-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+    }
+    .price-value {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--accent-espresso);
+      line-height: 1;
+    }
+
+    .btn-detail {
+      background: #FFFFFF;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold-hover);
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-full);
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .btn-detail:hover {
+      background: var(--accent-gold);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(194, 142, 58, 0.3);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(36, 22, 15, 0.65);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-content {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 680px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 25px 60px -15px rgba(0,0,0,0.3);
+      border: 1px solid var(--border-color);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+    .modal-header-img {
+      position: relative;
+      height: 240px;
+    }
+    .modal-header-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-main);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: background 0.2s;
+    }
+    .modal-close-btn:hover {
+      background: white;
+      transform: scale(1.05);
+    }
+
+    .modal-body {
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    .modal-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--accent-espresso);
+    }
+    .modal-price {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--accent-gold-hover);
+    }
+    .modal-badge-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .modal-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      background: var(--bg-page);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .spec-item small {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .spec-item span {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--accent-espresso);
+    }
+    .modal-desc-full {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .modal-footer {
+      padding: 1.25rem 2rem;
+      border-top: 1px solid var(--border-light);
+      background: var(--bg-page);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* PWA Banner Callout */
+    .pwa-callout {
+      background: linear-gradient(135deg, #3A2012 0%, #24160F 100%);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 3rem;
+      margin: 2rem auto 5rem;
+      max-width: 1240px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .pwa-callout::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(194, 142, 58, 0.25) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .pwa-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .pwa-content p {
+      color: #D6CBC2;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 540px;
+    }
+    .pwa-phone-mockup {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Footer */
+    footer.main-footer {
+      background: #FFFFFF;
+      border-top: 1px solid var(--border-color);
+      padding: 4.5rem 1.5rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 1rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    .footer-col h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-espresso);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.02em;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 0.75rem;
+    }
+    .footer-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: var(--accent-gold-hover);
+    }
+    .footer-bottom {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @media (max-width: 992px) {
+      .hero-section {
+        grid-template-columns: 1fr;
+        padding-top: 2rem;
+      }
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      .hero-floating-badge {
+        left: 10px;
+        bottom: 10px;
+      }
+      .pwa-callout {
+        grid-template-columns: 1fr;
+        padding: 2.5rem 1.75rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="badge">🚀 Scaffold Base &bull; MasterClass CI/CD</div>
-  <h1>Bienvenidos a NextCollege</h1>
-  <p>
-    Plataforma base lista para desarrollo acelerado con Inteligencia Artificial y Entrega Continua en Dokploy.
-  </p>
 
-  <div class="nav-cards">
-    <a href="/app" class="card">
-      <span style="font-size: 1.5rem;">📱</span>
-      <div style="text-align: left;">
-        <div>Ver PWA Mobile</div>
-        <small style="color: var(--text-muted); font-size: 0.75rem;">/app</small>
-      </div>
-    </a>
-    <a href="/admin" class="card">
-      <span style="font-size: 1.5rem;">⚙️</span>
-      <div style="text-align: left;">
-        <div>Panel Administrativo</div>
-        <small style="color: var(--text-muted); font-size: 0.75rem;">/admin</small>
-      </div>
-    </a>
-    <a href="/api/health" class="card">
-      <span style="font-size: 1.5rem;">🩺</span>
-      <div style="text-align: left;">
-        <div>Health Check API</div>
-        <small style="color: var(--text-muted); font-size: 0.75rem;">/api/health</small>
-      </div>
-    </a>
+  <!-- Top Announcement Bar -->
+  <div class="top-banner">
+    <span>☕ <strong>Coffee Rapid:</strong> Granos de especialidad tostados semanalmente &bull; Entregas en menos de 15 min &bull; Primer pedido con 20% OFF en la App</span>
   </div>
 
-  <footer>
-    NextCollege Scaffold &bull; Astro + React + Node.js + MySQL + Dokploy
+  <!-- Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">☕</div>
+        <div class="brand-text">
+          <h1>Coffee Rapid</h1>
+          <span>Specialty Roastery &bull; Barra de Autor</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#catalogo">Catálogo Destacado</a></li>
+          <li><a href="#filosofia">Origen & Tueste</a></li>
+          <li><a href="#app-mobile">App Móvil PWA</a></li>
+          <li><a href="#contacto">Nuestra Barra</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/app" class="btn btn-gold">
+          <span>📱</span>
+          <span>Pedir en App PWA</span>
+        </a>
+        <a href="/admin" class="btn btn-outline">
+          <span>⚙️</span>
+          <span>Panel Admin</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span>✨</span>
+          <span>Edición Comercial 2026 &bull; Grano 100% Arábica de Altura</span>
+        </div>
+        <h2 class="hero-title">
+          El arte del café de especialidad, <span>a tu velocidad.</span>
+        </h2>
+        <p class="hero-desc">
+          Tostamos lotes pequeños de microlotes galardonados en origen y calibramos cada extracción con rigor de barista de campeonato. Disfruta bebidas calientes sublimes y extracciones frías nitro donde estés.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#catalogo" class="btn btn-gold" style="padding: 0.85rem 1.75rem; font-size: 0.95rem;">
+            <span>☕ Explorar 10 Variantes Destacadas</span>
+          </a>
+          <a href="/app" class="btn btn-outline" style="padding: 0.85rem 1.5rem; font-size: 0.95rem;">
+            <span>📲 Abrir Experiencia Móvil PWA</span>
+          </a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <h4>10</h4>
+            <p>Variantes de Autor</p>
+          </div>
+          <div class="metric-item">
+            <h4>92+</h4>
+            <p>Puntos SCA Promedio</p>
+          </div>
+          <div class="metric-item">
+            <h4>15 min</h4>
+            <p>Entrega Express</p>
+          </div>
+          <div class="metric-item">
+            <h4>100%</h4>
+            <p>Trazabilidad Ética</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card-preview">
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&auto=format&fit=crop&q=80" alt="Coffee Rapid Barista Art" />
+        </div>
+        <div class="hero-floating-badge">
+          <div class="floating-icon">⭐</div>
+          <div>
+            <strong style="display:block; font-size: 0.95rem; color: var(--accent-espresso);">Rey de los cafes</strong>
+            <small style="color: var(--accent-gold); font-weight: 700;">Microlote Geisha &bull; 94 pts SCA</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Propositions -->
+    <section class="section-values" id="filosofia">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-subtitle">Nuestra Filosofía de Calidad</div>
+          <h2 class="section-title">De la finca a tu taza con precisión milimétrica</h2>
+          <p class="section-desc">
+            En Coffee Rapid no hacemos compromisos. Cada grano tiene una historia y cada perfil de taza es optimizado en nuestras tostadurías locales.
+          </p>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-box">
+            <div class="value-number">01</div>
+            <h3>Orígenes Únicos Trazables</h3>
+            <p>Compramos directo a productores en Huila, Nariño, Tarrazú, Yirgacheffe y Ruanda, pagando hasta 3x el precio de mercado para garantizar cosechas excepcionales.</p>
+          </div>
+          <div class="value-box">
+            <div class="value-number">02</div>
+            <h3>Tueste Artesanal Diario</h3>
+            <p>Horneamos en lotes de 12 kg con curvas térmicas personalizadas para preservar perfiles aromáticos de jazmín, frutas exóticas y chocolate de origen.</p>
+          </div>
+          <div class="value-box">
+            <div class="value-number">03</div>
+            <h3>Maestría en Caliente y Frío</h3>
+            <p>Desde espressos calibrados a 9 bares y leche microespumada a 65°C hasta cold brews nitro infusionados 20 horas en barricas de roble.</p>
+          </div>
+          <div class="value-box">
+            <div class="value-number">04</div>
+            <h3>PWA y Pedido Sin Esperas</h3>
+            <p>Pide con antelación desde tu smartphone a través de nuestra PWA optimizada y recoge tu bebida lista en barra en segundos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="catalog-section" id="catalogo">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-subtitle">Carta Oficial Coffee Rapid</div>
+          <h2 class="section-title">Catálogo de 10 Variantes Destacadas</h2>
+          <p class="section-desc">
+            Selección curada por nuestros baristas senior: descubre nuestras creaciones insignes como el <strong>"Rey de los cafes"</strong>, <strong>"Cafe Real Caliente"</strong>, <strong>"Cafe Real helado"</strong> y <strong>"Cafe Doble Especial"</strong>.
+          </p>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="catalog-filters">
+          <button class="filter-btn active" data-filter="all">☕ Todas las Bebidas (10)</button>
+          <button class="filter-btn" data-filter="Bebidas Calientes">🔥 Bebidas Calientes (6)</button>
+          <button class="filter-btn" data-filter="Bebidas Frías">❄️ Bebidas Frías (4)</button>
+        </div>
+
+        <!-- Coffees Grid -->
+        <div class="coffees-grid">
+          {featuredCoffees.map((coffee) => (
+            <div class="coffee-card" data-category={coffee.category}>
+              <div class="card-img-wrap">
+                <img src={coffee.image} alt={coffee.name} loading="lazy" />
+                <div class="card-badges">
+                  <span class={`badge-temp ${coffee.temperature === 'Caliente' ? 'hot' : 'cold'}`}>
+                    {coffee.temperature === 'Caliente' ? '🔥 Caliente' : '❄️ Fría'}
+                  </span>
+                  <span class="badge-sca">
+                    ⭐ {coffee.specialtyLevel.split(' ')[1]} {coffee.specialtyLevel.split(' ')[2] || 'SCA'}
+                  </span>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <div class="card-title-row">
+                  <h3 class="coffee-title">{coffee.name}</h3>
+                  <div class="coffee-origin">
+                    <span>📍</span>
+                    <span>{coffee.origin.split(',')[0]}</span>
+                  </div>
+                </div>
+
+                <p class="coffee-desc">{coffee.description}</p>
+
+                <div class="coffee-notes">
+                  {coffee.notes.map((note) => (
+                    <span class="note-pill">{note}</span>
+                  ))}
+                </div>
+
+                <div class="card-footer">
+                  <div class="price-wrap">
+                    <span class="price-label">Precio</span>
+                    <span class="price-value">{coffee.price}</span>
+                  </div>
+
+                  <button
+                    class="btn-detail"
+                    data-id={coffee.id}
+                    data-name={coffee.name}
+                    data-price={coffee.price}
+                    data-category={coffee.category}
+                    data-temp={coffee.temperature}
+                    data-specialty={coffee.specialtyLevel}
+                    data-origin={coffee.origin}
+                    data-process={coffee.process}
+                    data-roast={coffee.roast}
+                    data-notes={coffee.notes.join(', ')}
+                    data-desc={coffee.description}
+                    data-pairing={coffee.pairing}
+                    data-image={coffee.image}
+                  >
+                    <span>Ver detalles</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PWA Callout -->
+    <section class="container" id="app-mobile">
+      <div class="pwa-callout">
+        <div class="pwa-content">
+          <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.15); padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight:700; margin-bottom: 1.25rem;">
+            📱 PWA MÓVIL DISPONIBLE
+          </div>
+          <h2>Pide tus bebidas desde el móvil y simula tu compra en vivo</h2>
+          <p>
+            Nuestra aplicación web progresiva incluye navegación inferior con pestañas de <strong>Menú, Ofertas, Órdenes y Perfil</strong>. Personaliza tu leche, elige temperatura y acumula puntos RapidBeans.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="/app" class="btn btn-gold" style="padding: 0.9rem 1.8rem; font-size: 1rem;">
+              <span>📲 Lanzar Coffee Rapid PWA</span>
+            </a>
+            <a href="/admin" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: white;">
+              <span>⚙️ Ver Panel Administrativo</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="pwa-phone-mockup">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">☕📱</div>
+          <h4 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Coffee Rapid Mobile</h4>
+          <p style="font-size: 0.85rem; color: #D6CBC2; margin-bottom: 1.25rem;">Acceso instantáneo sin descargas pesadas desde la tienda de apps.</p>
+          <div style="display: inline-block; background: #22C55E; color: #064E3B; font-weight: 800; font-size: 0.75rem; padding: 4px 12px; border-radius: 20px;">
+            ⚡ Listo para Instalar
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Modal for Details -->
+  <div class="modal-overlay" id="coffeeModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <div class="modal-header-img">
+        <img id="modalImg" src="" alt="Coffee detail preview" />
+        <button class="modal-close-btn" id="modalClose" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-title-row">
+          <div>
+            <h3 class="modal-title" id="modalTitle">Nombre Café</h3>
+            <span id="modalOrigin" style="font-size: 0.85rem; color: var(--text-light); font-weight: 500;">Origen</span>
+          </div>
+          <div class="modal-price" id="modalPrice">$0.00</div>
+        </div>
+
+        <div class="modal-badge-row">
+          <span class="badge-sca" id="modalSpecialty">⭐ Especialidad</span>
+          <span class="badge-temp hot" id="modalTemp">🔥 Caliente</span>
+          <span class="note-pill" id="modalCategory">Bebidas Calientes</span>
+        </div>
+
+        <div class="modal-specs-grid">
+          <div class="spec-item">
+            <small>Finca & Terroir</small>
+            <span id="modalTerroir">-</span>
+          </div>
+          <div class="spec-item">
+            <small>Tueste Calibrado</small>
+            <span id="modalRoast">-</span>
+          </div>
+          <div class="spec-item">
+            <small>Proceso de Beneficio</small>
+            <span id="modalProcess">-</span>
+          </div>
+          <div class="spec-item">
+            <small>Maridaje Recomendado</small>
+            <span id="modalPairing">-</span>
+          </div>
+        </div>
+
+        <p class="modal-desc-full" id="modalDesc"></p>
+
+        <div>
+          <small style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-light); display:block; margin-bottom: 0.4rem;">
+            Perfil de Cata en Taza:
+          </small>
+          <div class="coffee-notes" id="modalNotesList"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div>
+          <small style="color: var(--text-light); font-size: 0.75rem;">¿Deseas personalizar tu pedido?</small>
+          <div style="font-weight: 700; color: var(--accent-espresso); font-size: 0.9rem;">Disponible en la App PWA</div>
+        </div>
+        <a href="/app" class="btn btn-gold" id="modalOrderBtn">
+          <span>📲 Ordenar en PWA Mobile</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer" id="contacto">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <div class="brand-icon">☕</div>
+          <div class="brand-text">
+            <h1>Coffee Rapid</h1>
+            <span>Specialty Roastery</span>
+          </div>
+        </div>
+        <p>
+          Revolucionando la experiencia de café de especialidad con tecnología rápida, trazabilidad honesta y devoción por cada taza servida.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Carta Destacada</h4>
+        <ul>
+          <li><a href="#catalogo">Rey de los cafes</a></li>
+          <li><a href="#catalogo">Cafe Real Caliente</a></li>
+          <li><a href="#catalogo">Cafe Real helado</a></li>
+          <li><a href="#catalogo">Cafe Doble Especial</a></li>
+          <li><a href="#catalogo">Nitro Cold Brew</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ecosistema Digital</h4>
+        <ul>
+          <li><a href="/app">📱 PWA Mobile (Menú, Ofertas, Órdenes)</a></li>
+          <li><a href="/admin">⚙️ Panel Admin & Métricas</a></li>
+          <li><a href="/api/health">🩺 Health Check API</a></li>
+          <li><a href="/api/products">📦 API Catálogo Productos</a></li>
+          <li><a href="/api/metrics">📊 API Métricas Consumo</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Horarios de Barra</h4>
+        <ul>
+          <li style="color: var(--text-muted); font-size: 0.88rem;">Lunes a Viernes: 07:00 - 20:30</li>
+          <li style="color: var(--text-muted); font-size: 0.88rem;">Sábados y Domingos: 08:00 - 21:00</li>
+          <li style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.5rem;">📍 Roastery Lab & Barra Central</li>
+          <li style="color: var(--text-muted); font-size: 0.88rem;">📞 WhatsApp Barista: +1 (555) COFFEE-RAPID</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Coffee Rapid. Todos los derechos reservados. Arquitectura Comercial Monorepo.</div>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="/app" style="color: var(--accent-gold); text-decoration: none; font-weight: 600;">📱 App PWA</a>
+        <span>&bull;</span>
+        <a href="/admin" style="color: var(--accent-gold); text-decoration: none; font-weight: 600;">⚙️ Dashboard Admin</a>
+      </div>
+    </div>
   </footer>
+
+  <!-- Client-side script for filters and details modal -->
+  <script is:inline>
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const coffeeCards = document.querySelectorAll('.coffee-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+        coffeeCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('coffeeModal');
+    const modalClose = document.getElementById('modalClose');
+    const detailButtons = document.querySelectorAll('.btn-detail');
+
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalOrigin = document.getElementById('modalOrigin');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalSpecialty = document.getElementById('modalSpecialty');
+    const modalTemp = document.getElementById('modalTemp');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalTerroir = document.getElementById('modalTerroir');
+    const modalRoast = document.getElementById('modalRoast');
+    const modalProcess = document.getElementById('modalProcess');
+    const modalPairing = document.getElementById('modalPairing');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalNotesList = document.getElementById('modalNotesList');
+
+    detailButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const dataset = button.dataset;
+        modalTitle.textContent = dataset.name;
+        modalPrice.textContent = dataset.price;
+        modalOrigin.textContent = dataset.origin;
+        modalSpecialty.textContent = `⭐ ${dataset.specialty}`;
+        modalCategory.textContent = dataset.category;
+        
+        modalTemp.textContent = dataset.temp === 'Caliente' ? '🔥 Caliente' : '❄️ Fría';
+        modalTemp.className = `badge-temp ${dataset.temp === 'Caliente' ? 'hot' : 'cold'}`;
+        
+        modalTerroir.textContent = dataset.origin;
+        modalRoast.textContent = dataset.roast;
+        modalProcess.textContent = dataset.process;
+        modalPairing.textContent = dataset.pairing;
+        modalDesc.textContent = dataset.desc;
+        modalImg.src = dataset.image;
+        modalImg.alt = dataset.name;
+
+        // Render tasting notes
+        modalNotesList.innerHTML = '';
+        const notes = dataset.notes.split(', ');
+        notes.forEach(note => {
+          const pill = document.createElement('span');
+          pill.className = 'note-pill';
+          pill.textContent = note;
+          modalNotesList.appendChild(pill);
+        });
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
