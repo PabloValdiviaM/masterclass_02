@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-// Catálogo base de 10 bebidas de autor de Coffee Rapid
+// Catálogo base de 10 bebidas de autor de Coffee Rapid (Edición Dark Premium)
 const INITIAL_MENU = [
   {
     id: 1,
@@ -9,8 +9,10 @@ const INITIAL_MENU = [
     temperature: 'Caliente',
     price: 6.50,
     specialtyLevel: '94 pts SCA',
+    rating: '4.9',
     origin: 'Huila, Colombia',
     image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80',
+    composition: '40% Doble Geisha, 60% Leche sedosa',
     description: 'Espresso doble Geisha con microespuma sedosa y velo aromático de canela de Ceilán.'
   },
   {
@@ -20,8 +22,10 @@ const INITIAL_MENU = [
     temperature: 'Caliente',
     price: 5.20,
     specialtyLevel: '91 pts SCA',
+    rating: '4.8',
     origin: 'Tarrazú, Costa Rica',
     image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&auto=format&fit=crop&q=80',
+    composition: '35% Ristretto, 65% Crema real avellana',
     description: 'Doble arábica con microespuma artesanal, infusión de avellana silvestre y crema real.'
   },
   {
@@ -31,9 +35,11 @@ const INITIAL_MENU = [
     temperature: 'Fría',
     price: 5.80,
     specialtyLevel: '92 pts SCA',
+    rating: '5.0',
     origin: 'Yirgacheffe, Etiopía',
     image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=500&auto=format&fit=crop&q=80',
-    description: 'Cold brew en barrica de roble con leche infusionada en vainilla de Madagascar y hielo cristalino.'
+    composition: '50% Cold Brew Oak-Aged, 50% Leche Vainilla',
+    description: 'Cold brew en barrica de roble con vainilla de Madagascar y hielo cristalino.'
   },
   {
     id: 4,
@@ -42,9 +48,11 @@ const INITIAL_MENU = [
     temperature: 'Caliente',
     price: 4.80,
     specialtyLevel: '90 pts SCA',
+    rating: '4.7',
     origin: 'Nariño, Colombia',
     image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500&auto=format&fit=crop&q=80',
-    description: 'Doble ristretto potente calibrado a 9 bares con ratio 1:2 y crema dorada ultra espesa.'
+    composition: '100% Extracción Ristretto a 9 Bares',
+    description: 'Doble ristretto potente calibrado a 9 bares con ratio 1:2 y crema espesa dorada.'
   },
   {
     id: 5,
@@ -53,9 +61,11 @@ const INITIAL_MENU = [
     temperature: 'Fría',
     price: 5.50,
     specialtyLevel: '89 pts SCA',
+    rating: '4.9',
     origin: 'Nyeri AA, Kenia',
     image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&auto=format&fit=crop&q=80',
-    description: 'Extracción en frío infusionada con nitrógeno puro: cascada sedosa sin azúcar añadida.'
+    composition: 'Infusión en frío con nitrógeno puro N2',
+    description: 'Extracción fría infusionada con nitrógeno puro: textura aterciopelada tipo cascada.'
   },
   {
     id: 6,
@@ -64,9 +74,11 @@ const INITIAL_MENU = [
     temperature: 'Caliente',
     price: 5.40,
     specialtyLevel: '88 pts SCA',
+    rating: '4.8',
     origin: 'Antigua, Guatemala',
     image: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=500&auto=format&fit=crop&q=80',
-    description: 'Capas de leche dulce texturizada, espresso vertido y sirope de caramelo salado casero.'
+    composition: '25% Espresso, 70% Leche, 5% Caramelo salado',
+    description: 'Capas de leche vaporizada dulce, shot de espresso y sirope de caramelo salado casero.'
   },
   {
     id: 7,
@@ -75,9 +87,11 @@ const INITIAL_MENU = [
     temperature: 'Caliente',
     price: 5.60,
     specialtyLevel: '89 pts SCA',
+    rating: '4.8',
     origin: 'Huila, Colombia',
     image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=500&auto=format&fit=crop&q=80',
-    description: 'Chocolate blanco suizo fundido, espresso de especialidad y crema chantilly con nibs.'
+    composition: 'Ganache de chocolate blanco suizo & espresso',
+    description: 'Ganache de chocolate blanco suizo con espresso recién extraído y leche texturizada.'
   },
   {
     id: 8,
@@ -86,9 +100,11 @@ const INITIAL_MENU = [
     temperature: 'Fría',
     price: 5.90,
     specialtyLevel: '88 pts SCA',
+    rating: '4.9',
     origin: 'Cerrado, Brasil',
     image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=80',
-    description: 'Frappé helado de espresso, pasta de avellanas del Piamonte y virutas de cacao oscuro.'
+    composition: 'Doble espresso frappé con avellana y chantilly',
+    description: 'Frappé helado de doble espresso, pasta de avellanas del Piamonte y virutas de cacao.'
   },
   {
     id: 9,
@@ -97,9 +113,11 @@ const INITIAL_MENU = [
     temperature: 'Fría',
     price: 5.10,
     specialtyLevel: '93 pts SCA',
+    rating: '4.9',
     origin: 'Guji, Etiopía',
     image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop&q=80',
-    description: 'Espresso etíope floral en suspensión sobre agua tónica botánica y pomelo rosado.'
+    composition: '35% Espresso Guji, 65% Tónica Botánica',
+    description: 'Espresso floral en suspensión sobre agua tónica artesanal con hielo y pomelo.'
   },
   {
     id: 10,
@@ -108,31 +126,32 @@ const INITIAL_MENU = [
     temperature: 'Caliente',
     price: 4.90,
     specialtyLevel: '92 pts SCA',
+    rating: '4.9',
     origin: 'Ruanda Bourbon',
     image: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=500&auto=format&fit=crop&q=80',
-    description: 'Doble ristretto con microespuma ultrafina brillante y equilibrio frutal inmaculado.'
+    composition: '40% Ristretto Ruanda, 60% Microespuma fina',
+    description: 'Doble ristretto con microespuma ultrafina homogénea y dulzura láctea natural.'
   }
 ];
 
 export default function App() {
-  // PWA & Connectivity state
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
 
-  // App Tabs: 'menu' | 'ofertas' | 'ordenes' | 'perfil'
+  // Tabs: 'menu' | 'ofertas' | 'ordenes' | 'perfil'
   const [activeTab, setActiveTab] = useState('menu');
 
-  // Menu filters & search
+  // Filters & search
   const [selectedCategory, setSelectedCategory] = useState('Todas');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Cart & Orders simulation
+  // Cart & simulation
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [notification, setNotification] = useState(null);
 
-  // Modal Customization
+  // Customization
   const [customizingItem, setCustomizingItem] = useState(null);
   const [customSize, setCustomSize] = useState('Mediano (12 oz)');
   const [customMilk, setCustomMilk] = useState('Leche Entera de Granja');
@@ -142,13 +161,13 @@ export default function App() {
   const [orders, setOrders] = useState([
     {
       id: 'CR-8921',
-      date: 'Hoy, hace 15 min',
+      date: 'Hoy, hace 12 min',
       items: [
         { name: 'Rey de los cafes', size: 'Mediano (12 oz)', milk: 'Leche de Granja', qty: 1, price: 6.50 }
       ],
       total: 6.50,
       status: 'Listo en Barra',
-      statusStep: 3, // 1: Recibido, 2: Preparando, 3: Listo
+      statusStep: 3,
       pickupType: 'Retiro en Barra Express'
     },
     {
@@ -165,7 +184,6 @@ export default function App() {
     }
   ]);
 
-  // Handle Online/Offline and PWA Install
   useEffect(() => {
     const handleOnline = () => setIsOnline(true);
     const handleOffline = () => setIsOnline(false);
@@ -192,7 +210,7 @@ export default function App() {
 
   const handleInstallClick = async () => {
     if (!deferredPrompt) {
-      alert('Para instalar Coffee Rapid PWA: En tu navegador presiona el botón de compartir o menú y selecciona "Instalar aplicación" o "Agregar a pantalla de inicio".');
+      alert('Para instalar Coffee Rapid PWA: En tu navegador selecciona "Instalar aplicación" o "Agregar a pantalla de inicio".');
       return;
     }
     deferredPrompt.prompt();
@@ -200,7 +218,6 @@ export default function App() {
     setDeferredPrompt(null);
   };
 
-  // Open customization drawer for product
   const handleOpenCustomize = (product) => {
     setCustomizingItem(product);
     setCustomSize('Mediano (12 oz)');
@@ -208,7 +225,6 @@ export default function App() {
     setCustomSweetness('Sin azúcar (Recomendado SCA)');
   };
 
-  // Add customized item to cart
   const handleAddToCart = () => {
     if (!customizingItem) return;
 
@@ -240,7 +256,6 @@ export default function App() {
     showNotification(`☕ ${customizingItem.name} añadido a tu orden`);
   };
 
-  // Update item quantity in cart
   const updateQuantity = (cartId, delta) => {
     setCart(prev => prev.map(item => {
       if (item.cartId === cartId) {
@@ -251,19 +266,16 @@ export default function App() {
     }).filter(Boolean));
   };
 
-  // Cart calculations
   const cartSubtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const discountAmount = appliedCoupon ? (cartSubtotal * appliedCoupon.discount) : 0;
   const cartTotal = Math.max(0, cartSubtotal - discountAmount);
   const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  // Apply Coupon
   const applyCouponCode = (code, discount, label) => {
     setAppliedCoupon({ code, discount, label });
     showNotification(`🏷️ Cupón aplicado: ${label}`);
   };
 
-  // Simulate Purchase Confirmation
   const handleConfirmOrder = async (pickupType = 'Retiro en Barra Express') => {
     if (cart.length === 0) return;
 
@@ -284,10 +296,8 @@ export default function App() {
       pickupType: pickupType
     };
 
-    // Save locally
     setOrders(prev => [newOrder, ...prev]);
 
-    // Send to backend API asynchronously if available
     try {
       await fetch('/api/orders', {
         method: 'POST',
@@ -303,14 +313,12 @@ export default function App() {
       console.log('Simulación en modo local:', err.message);
     }
 
-    // Clear cart and navigate to orders tab
     setCart([]);
     setIsCartOpen(false);
     setActiveTab('ordenes');
-    showNotification(`🎉 ¡Compra simulada con éxito! Orden ${newOrderId} en preparación.`);
+    showNotification(`🎉 ¡Compra simulada con éxito! Orden ${newOrderId} en barra.`);
   };
 
-  // Filtered menu list
   const filteredMenu = INITIAL_MENU.filter(item => {
     const matchesCategory =
       selectedCategory === 'Todas' ||
@@ -327,7 +335,7 @@ export default function App() {
   });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative', background: '#0D0907' }}>
       
       {/* Toast Notification */}
       {notification && (
@@ -336,18 +344,18 @@ export default function App() {
           top: '16px',
           left: '50%',
           transform: 'translateX(-50%)',
-          background: '#2C1810',
+          background: '#1F140D',
           color: '#FAF7F2',
           padding: '10px 18px',
           borderRadius: '9999px',
           fontSize: '0.85rem',
           fontWeight: '600',
-          boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+          boxShadow: '0 10px 25px rgba(0,0,0,0.6)',
           zIndex: 9999,
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-          border: '1px solid #C28E3A',
+          border: '1px solid #D4A373',
           maxWidth: '90%',
           textAlign: 'center'
         }} className="fade-in">
@@ -355,10 +363,11 @@ export default function App() {
         </div>
       )}
 
-      {/* Top Mobile Status Header */}
+      {/* Header Dark Mobile (Matches phone mockup in reference image) */}
       <header style={{
-        background: '#FFFFFF',
-        borderBottom: '1px solid #E8DED1',
+        background: 'rgba(18, 12, 8, 0.92)',
+        backdropFilter: 'blur(16px)',
+        borderBottom: '1px solid #24170F',
         padding: '12px 18px',
         position: 'sticky',
         top: 0,
@@ -372,8 +381,9 @@ export default function App() {
             width: '32px',
             height: '32px',
             borderRadius: '8px',
-            background: '#C28E3A',
-            color: 'white',
+            background: 'linear-gradient(135deg, #2A1C14 0%, #150E09 100%)',
+            border: '1px solid rgba(212,163,115,0.4)',
+            color: '#D4A373',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -381,9 +391,11 @@ export default function App() {
             fontSize: '1.1rem'
           }}>☕</div>
           <div>
-            <h1 style={{ fontSize: '1rem', fontWeight: '800', color: '#2C1810', lineHeight: 1.1 }}>Coffee Rapid</h1>
-            <div style={{ fontSize: '0.68rem', color: '#76685E', display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span>📍 Barra Central Roastery</span>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.05rem', fontWeight: '700', color: '#F7EFE8', letterSpacing: '0.04em' }}>
+              COFFEE <span style={{ color: '#D4A373' }}>RAPID</span>
+            </div>
+            <div style={{ fontSize: '0.65rem', color: '#7E6E63', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+              Specialty Mobile Bar
             </div>
           </div>
         </div>
@@ -391,23 +403,24 @@ export default function App() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           {/* Online badge */}
           <span style={{
-            fontSize: '0.7rem',
+            fontSize: '0.68rem',
             padding: '3px 8px',
             borderRadius: '10px',
             fontWeight: '700',
-            background: isOnline ? 'rgba(22, 163, 74, 0.12)' : 'rgba(220, 38, 38, 0.12)',
-            color: isOnline ? '#15803D' : '#B91C1C'
+            background: isOnline ? 'rgba(34, 197, 94, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+            color: isOnline ? '#22C55E' : '#EF4444',
+            border: `1px solid ${isOnline ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`
           }}>
-            {isOnline ? '🟢 Online' : '🔴 Offline'}
+            {isOnline ? '● Online' : '● Offline'}
           </span>
 
-          {/* Cart Icon trigger */}
+          {/* Cart Icon */}
           <button
             onClick={() => setIsCartOpen(true)}
             style={{
               position: 'relative',
-              background: '#F4EEE5',
-              border: 'none',
+              background: '#1F150F',
+              border: '1px solid #2E1F16',
               borderRadius: '50%',
               width: '36px',
               height: '36px',
@@ -415,6 +428,7 @@ export default function App() {
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
+              color: '#F7EFE8',
               fontSize: '1rem'
             }}
           >
@@ -424,8 +438,8 @@ export default function App() {
                 position: 'absolute',
                 top: '-4px',
                 right: '-4px',
-                background: '#C28E3A',
-                color: 'white',
+                background: '#D4A373',
+                color: '#140E0A',
                 fontSize: '0.7rem',
                 fontWeight: '800',
                 width: '18px',
@@ -434,7 +448,7 @@ export default function App() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+                boxShadow: '0 2px 6px rgba(0,0,0,0.5)'
               }}>
                 {totalItemsCount}
               </span>
@@ -449,21 +463,46 @@ export default function App() {
         {/* ==================== TAB 1: MENÚ ==================== */}
         {activeTab === 'menu' && (
           <div className="fade-in">
-            {/* Search Bar */}
+            
+            {/* Hero Mini Banner (Like reference mobile screen) */}
+            <div style={{
+              background: 'linear-gradient(135deg, #1C120B 0%, #120A06 100%)',
+              border: '1px solid rgba(212,163,115,0.25)',
+              borderRadius: '16px',
+              padding: '16px',
+              marginBottom: '16px',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <span style={{ fontSize: '0.65rem', color: '#D4A373', fontWeight: '800', letterSpacing: '0.12em', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>
+                ⭐ PREMIUM COFFEE
+              </span>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', fontWeight: '600', color: '#F7EFE8', lineHeight: 1.25, marginBottom: '6px' }}>
+                Unlock a Superior Taste in Every Sip!
+              </h2>
+              <p style={{ fontSize: '0.78rem', color: '#B8A79B', lineHeight: 1.4, maxWidth: '240px', marginBottom: '10px' }}>
+                Barra de especialidad calibrada al minuto. Tuestes frescos y entrega rápida.
+              </p>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: '#D4A373', color: '#140E0A', fontSize: '0.72rem', fontWeight: '800', padding: '4px 12px', borderRadius: '20px' }}>
+                <span>Explore Catalog</span>
+                <span>→</span>
+              </div>
+            </div>
+
+            {/* Search Input */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              background: '#FFFFFF',
-              border: '1px solid #E8DED1',
+              background: '#160E09',
+              border: '1px solid #281B13',
               borderRadius: '12px',
               padding: '8px 14px',
-              marginBottom: '14px',
-              boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+              marginBottom: '14px'
             }}>
-              <span style={{ marginRight: '8px', color: '#A19184' }}>🔍</span>
+              <span style={{ marginRight: '8px', color: '#7E6E63' }}>🔍</span>
               <input
                 type="text"
-                placeholder="Buscar bebidas, orígenes, notas..."
+                placeholder="Buscar Rey de los cafes, Cold brew..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
@@ -471,25 +510,25 @@ export default function App() {
                   outline: 'none',
                   background: 'transparent',
                   width: '100%',
-                  fontSize: '0.88rem',
-                  color: '#2C1810'
+                  fontSize: '0.85rem',
+                  color: '#F7EFE8'
                 }}
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  style={{ border: 'none', background: 'transparent', color: '#A19184', cursor: 'pointer', fontSize: '0.8rem' }}
+                  style={{ border: 'none', background: 'transparent', color: '#7E6E63', cursor: 'pointer' }}
                 >✕</button>
               )}
             </div>
 
-            {/* Category Filter Pills */}
-            <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '10px', marginBottom: '12px' }}>
+            {/* Category Pills */}
+            <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px', marginBottom: '14px' }}>
               {[
                 { id: 'Todas', label: '☕ Todas (10)' },
-                { id: 'Calientes', label: '🔥 Calientes (6)' },
-                { id: 'Frías', label: '❄️ Frías (4)' },
-                { id: 'Especialidad', label: '⭐ +91 pts SCA' }
+                { id: 'Calientes', label: '🔥 Calientes' },
+                { id: 'Frías', label: '❄️ Frías' },
+                { id: 'Especialidad', label: '⭐ +91 SCA' }
               ].map(cat => (
                 <button
                   key={cat.id}
@@ -498,12 +537,12 @@ export default function App() {
                     whiteSpace: 'nowrap',
                     padding: '6px 14px',
                     borderRadius: '20px',
-                    fontSize: '0.8rem',
+                    fontSize: '0.78rem',
                     fontWeight: '700',
                     border: '1px solid',
-                    borderColor: selectedCategory === cat.id ? '#2C1810' : '#E8DED1',
-                    background: selectedCategory === cat.id ? '#2C1810' : '#FFFFFF',
-                    color: selectedCategory === cat.id ? '#FFFFFF' : '#726256',
+                    borderColor: selectedCategory === cat.id ? '#D4A373' : '#281B13',
+                    background: selectedCategory === cat.id ? '#D4A373' : '#160E09',
+                    color: selectedCategory === cat.id ? '#140E0A' : '#B8A79B',
                     cursor: 'pointer',
                     transition: 'all 0.2s'
                   }}
@@ -513,25 +552,33 @@ export default function App() {
               ))}
             </div>
 
-            {/* Menu Items List */}
+            {/* Popular Drinks Title */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: '800', color: '#D4A373', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                Our Popular Drinks
+              </span>
+              <span style={{ fontSize: '0.72rem', color: '#7E6E63' }}>{filteredMenu.length} disponibles</span>
+            </div>
+
+            {/* Menu Items List (Dark cards with rating badge & gold circle +) */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {filteredMenu.map(coffee => (
                 <div
                   key={coffee.id}
                   style={{
-                    background: '#FFFFFF',
+                    background: '#18110D',
                     borderRadius: '16px',
-                    border: '1px solid #E8DED1',
+                    border: '1px solid #281B13',
                     padding: '12px',
                     display: 'flex',
-                    gap: '14px',
-                    boxShadow: '0 2px 8px rgba(44, 24, 16, 0.04)',
+                    gap: '12px',
+                    boxShadow: '0 4px 14px rgba(0,0,0,0.4)',
                     alignItems: 'center',
-                    transition: 'transform 0.2s'
+                    transition: 'border-color 0.2s'
                   }}
                 >
-                  {/* Thumbnail Image with Temperature Badge */}
-                  <div style={{ position: 'relative', width: '90px', height: '90px', flexShrink: 0, borderRadius: '12px', overflow: 'hidden' }}>
+                  {/* Thumbnail with Rating badge */}
+                  <div style={{ position: 'relative', width: '85px', height: '85px', flexShrink: 0, borderRadius: '12px', overflow: 'hidden' }}>
                     <img
                       src={coffee.image}
                       alt={coffee.name}
@@ -540,13 +587,30 @@ export default function App() {
                     <span style={{
                       position: 'absolute',
                       top: '4px',
-                      left: '4px',
-                      fontSize: '0.65rem',
+                      right: '4px',
+                      fontSize: '0.62rem',
                       fontWeight: '800',
-                      padding: '2px 6px',
-                      borderRadius: '8px',
-                      background: coffee.temperature === 'Caliente' ? 'rgba(255,241,235,0.92)' : 'rgba(240,249,255,0.92)',
-                      color: coffee.temperature === 'Caliente' ? '#C2410C' : '#0284C7'
+                      padding: '2px 5px',
+                      borderRadius: '6px',
+                      background: 'rgba(255,255,255,0.92)',
+                      color: '#140E0A',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '2px'
+                    }}>
+                      <span>{coffee.rating}</span>
+                      <span style={{ color: '#D4A373' }}>★</span>
+                    </span>
+                    <span style={{
+                      position: 'absolute',
+                      bottom: '4px',
+                      left: '4px',
+                      fontSize: '0.62rem',
+                      fontWeight: '700',
+                      padding: '1px 5px',
+                      borderRadius: '4px',
+                      background: coffee.temperature === 'Caliente' ? 'rgba(46,20,10,0.9)' : 'rgba(10,30,48,0.9)',
+                      color: coffee.temperature === 'Caliente' ? '#F97316' : '#38BDF8'
                     }}>
                       {coffee.temperature === 'Caliente' ? '🔥' : '❄️'}
                     </span>
@@ -554,62 +618,43 @@ export default function App() {
 
                   {/* Info */}
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                      <h3 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#2C1810', marginBottom: '2px', lineHeight: 1.2 }}>
-                        {coffee.name}
-                      </h3>
+                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.95rem', fontWeight: '600', color: '#F7EFE8', marginBottom: '2px', lineHeight: 1.2 }}>
+                      {coffee.name}
+                    </h3>
+
+                    <div style={{ fontSize: '0.68rem', color: '#D4A373', marginBottom: '2px', fontWeight: '600' }}>
+                      ⭐ {coffee.specialtyLevel} &bull; <span style={{ color: '#7E6E63' }}>{coffee.origin}</span>
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                      <span style={{
-                        background: '#FEF3C7',
-                        color: '#92400E',
-                        fontSize: '0.68rem',
-                        fontWeight: '700',
-                        padding: '1px 6px',
-                        borderRadius: '6px'
-                      }}>
-                        ⭐ {coffee.specialtyLevel}
-                      </span>
-                      <span style={{ fontSize: '0.7rem', color: '#A19184' }}>{coffee.origin}</span>
+                    <div style={{ fontSize: '0.72rem', color: '#7E6E63', marginBottom: '6px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {coffee.composition}
                     </div>
-
-                    <p style={{
-                      fontSize: '0.78rem',
-                      color: '#726256',
-                      lineHeight: 1.35,
-                      marginBottom: '8px',
-                      display: '-webkit-box',
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden'
-                    }}>
-                      {coffee.description}
-                    </p>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '1.05rem', fontWeight: '800', color: '#C28E3A' }}>
+                      <span style={{ fontSize: '1.1rem', fontWeight: '800', color: '#F7EFE8' }}>
                         ${coffee.price.toFixed(2)}
                       </span>
+
                       <button
                         onClick={() => handleOpenCustomize(coffee)}
                         style={{
-                          background: '#2C1810',
-                          color: '#FFFFFF',
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '50%',
+                          background: '#D4A373',
+                          color: '#140E0A',
                           border: 'none',
-                          padding: '6px 14px',
-                          borderRadius: '20px',
-                          fontSize: '0.78rem',
-                          fontWeight: '700',
-                          cursor: 'pointer',
+                          fontSize: '1.15rem',
+                          fontWeight: '800',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '4px',
-                          boxShadow: '0 2px 6px rgba(44, 24, 16, 0.15)'
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          boxShadow: '0 2px 8px rgba(212,163,115,0.3)'
                         }}
+                        title="Personalizar bebida"
                       >
-                        <span>Personalizar</span>
-                        <span>+</span>
+                        +
                       </button>
                     </div>
                   </div>
@@ -623,34 +668,34 @@ export default function App() {
         {activeTab === 'ofertas' && (
           <div className="fade-in">
             <div style={{ marginBottom: '16px' }}>
-              <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#2C1810', marginBottom: '4px' }}>
+              <span style={{ fontSize: '0.7rem', color: '#D4A373', fontWeight: '800', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                Descuentos de Barra
+              </span>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.35rem', fontWeight: '600', color: '#F7EFE8', marginTop: '2px' }}>
                 🏷️ Promociones & Ofertas
               </h2>
-              <p style={{ fontSize: '0.85rem', color: '#726256' }}>
-                Beneficios exclusivos para miembros de la comunidad Coffee Rapid.
-              </p>
             </div>
 
             {/* Promo 1: 2x1 */}
             <div style={{
-              background: 'linear-gradient(135deg, #FFF9ED 0%, #FFFFFF 100%)',
-              border: '1px solid #FCD34D',
+              background: 'linear-gradient(135deg, #20150F 0%, #160E0A 100%)',
+              border: '1px solid rgba(212,163,115,0.35)',
               borderRadius: '16px',
               padding: '16px',
               marginBottom: '14px',
-              boxShadow: '0 4px 12px rgba(194, 142, 58, 0.08)'
+              boxShadow: '0 4px 16px rgba(0,0,0,0.5)'
             }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                <span style={{ background: '#F59E0B', color: 'white', fontSize: '0.7rem', fontWeight: '800', padding: '3px 8px', borderRadius: '8px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <span style={{ background: '#D4A373', color: '#140E0A', fontSize: '0.68rem', fontWeight: '800', padding: '3px 8px', borderRadius: '6px' }}>
                   PROMO DEL DÍA
                 </span>
                 <span style={{ fontSize: '1.2rem' }}>❄️☕</span>
               </div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: '800', color: '#2C1810', marginBottom: '4px' }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', color: '#F7EFE8', marginBottom: '4px' }}>
                 2x1 en Café Real Helado
               </h3>
-              <p style={{ fontSize: '0.82rem', color: '#726256', marginBottom: '12px' }}>
-                Lleva dos cold brews con vainilla de Madagascar reposados en roble por el precio de uno.
+              <p style={{ fontSize: '0.8rem', color: '#B8A79B', marginBottom: '12px' }}>
+                Lleva dos cold brews reposados 20h en barrica de roble por solo el valor de uno.
               </p>
               <button
                 onClick={() => {
@@ -664,25 +709,25 @@ export default function App() {
                         name: '2x1 Café Real Helado',
                         basePrice: 5.80,
                         price: 5.80,
-                        size: 'Mediano (12 oz) [2 unidades]',
+                        size: 'Mediano (12 oz) [2 tazas]',
                         milk: 'Leche Vainilla Real',
-                        sweetness: 'Recomendado',
+                        sweetness: 'Recomendado SCA',
                         quantity: 1,
                         image: item.image,
                         category: item.category
                       }
                     ]);
-                    showNotification('🎉 ¡Promo 2x1 agregada a tu orden!');
+                    showNotification('🎉 ¡Promo 2x1 Café Real Helado añadida!');
                   }
                 }}
                 style={{
-                  background: '#C28E3A',
-                  color: 'white',
+                  background: '#D4A373',
+                  color: '#140E0A',
                   border: 'none',
-                  padding: '8px 16px',
+                  padding: '9px 16px',
                   borderRadius: '20px',
                   fontSize: '0.82rem',
-                  fontWeight: '700',
+                  fontWeight: '800',
                   cursor: 'pointer',
                   width: '100%'
                 }}
@@ -693,29 +738,28 @@ export default function App() {
 
             {/* Promo 2: Combo Barista */}
             <div style={{
-              background: '#FFFFFF',
-              border: '1px solid #E8DED1',
+              background: '#18110D',
+              border: '1px solid #281B13',
               borderRadius: '16px',
               padding: '16px',
-              marginBottom: '14px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+              marginBottom: '14px'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                <span style={{ background: '#DCFCE7', color: '#15803D', fontSize: '0.7rem', fontWeight: '800', padding: '3px 8px', borderRadius: '8px' }}>
-                  COMBO DESAYUNO
+                <span style={{ background: 'rgba(34,197,94,0.15)', color: '#22C55E', border: '1px solid rgba(34,197,94,0.3)', fontSize: '0.68rem', fontWeight: '800', padding: '3px 8px', borderRadius: '6px' }}>
+                  COMBO BARISTA
                 </span>
-                <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#15803D' }}>Ahorras $2.20</span>
+                <span style={{ fontSize: '0.82rem', fontWeight: '800', color: '#22C55E' }}>Ahorras $2.20</span>
               </div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: '800', color: '#2C1810', marginBottom: '4px' }}>
-                Rey de los cafes + Croissant Francés
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.05rem', color: '#F7EFE8', marginBottom: '4px' }}>
+                Rey de los cafes + Croissant
               </h3>
-              <p style={{ fontSize: '0.82rem', color: '#726256', marginBottom: '12px' }}>
-                Espresso Geisha 94 pts con leche sedosa acompañado de un croissant hojaldrado horneado hoy.
+              <p style={{ fontSize: '0.78rem', color: '#B8A79B', marginBottom: '12px' }}>
+                Microlote Geisha 94 pts acompañado de un croissant francés horneado esta mañana.
               </p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <span style={{ fontSize: '0.8rem', textDecoration: 'line-through', color: '#A19184', marginRight: '6px' }}>$10.10</span>
-                  <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#2C1810' }}>$7.90</span>
+                  <span style={{ fontSize: '0.78rem', textDecoration: 'line-through', color: '#7E6E63', marginRight: '6px' }}>$10.10</span>
+                  <span style={{ fontSize: '1.15rem', fontWeight: '800', color: '#D4A373' }}>$7.90</span>
                 </div>
                 <button
                   onClick={() => {
@@ -739,12 +783,12 @@ export default function App() {
                     showNotification('🥐 Combo Barista agregado al carrito');
                   }}
                   style={{
-                    background: '#2C1810',
-                    color: 'white',
-                    border: 'none',
+                    background: '#281B13',
+                    border: '1px solid #D4A373',
+                    color: '#D4A373',
                     padding: '8px 16px',
                     borderRadius: '20px',
-                    fontSize: '0.82rem',
+                    fontSize: '0.8rem',
                     fontWeight: '700',
                     cursor: 'pointer'
                   }}
@@ -756,33 +800,33 @@ export default function App() {
 
             {/* Coupon Card */}
             <div style={{
-              background: '#FDFBF7',
-              border: '2px dashed #C28E3A',
+              background: '#140E0A',
+              border: '2px dashed rgba(212,163,115,0.4)',
               borderRadius: '16px',
               padding: '16px',
               textAlign: 'center'
             }}>
               <span style={{ fontSize: '1.8rem', display: 'block', marginBottom: '4px' }}>🎟️</span>
-              <h4 style={{ fontSize: '1rem', fontWeight: '800', color: '#2C1810', marginBottom: '4px' }}>
+              <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.05rem', color: '#F7EFE8', marginBottom: '4px' }}>
                 Cupón: BIENVENIDA20
               </h4>
-              <p style={{ fontSize: '0.8rem', color: '#726256', marginBottom: '12px' }}>
-                Obtén 20% de descuento en el total de tu orden de bebidas de especialidad.
+              <p style={{ fontSize: '0.78rem', color: '#B8A79B', marginBottom: '12px' }}>
+                20% de descuento directo en tu primera compra simulada de bebidas.
               </p>
               <button
                 onClick={() => applyCouponCode('BIENVENIDA20', 0.20, '20% OFF Bienvenida')}
                 style={{
-                  background: appliedCoupon?.code === 'BIENVENIDA20' ? '#15803D' : '#C28E3A',
-                  color: 'white',
+                  background: appliedCoupon?.code === 'BIENVENIDA20' ? '#22C55E' : '#D4A373',
+                  color: '#140E0A',
                   border: 'none',
                   padding: '8px 20px',
                   borderRadius: '20px',
-                  fontSize: '0.82rem',
-                  fontWeight: '700',
+                  fontSize: '0.8rem',
+                  fontWeight: '800',
                   cursor: 'pointer'
                 }}
               >
-                {appliedCoupon?.code === 'BIENVENIDA20' ? '✅ Cupón Activado' : 'Aplicar Cupón al Carrito'}
+                {appliedCoupon?.code === 'BIENVENIDA20' ? '✓ Cupón Activado' : 'Aplicar Cupón al Carrito'}
               </button>
             </div>
           </div>
@@ -792,155 +836,128 @@ export default function App() {
         {activeTab === 'ordenes' && (
           <div className="fade-in">
             <div style={{ marginBottom: '16px' }}>
-              <h2 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#2C1810', marginBottom: '4px' }}>
+              <span style={{ fontSize: '0.7rem', color: '#D4A373', fontWeight: '800', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                Preparación en Barra
+              </span>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.35rem', color: '#F7EFE8', marginTop: '2px' }}>
                 🧾 Mis Órdenes
               </h2>
-              <p style={{ fontSize: '0.85rem', color: '#726256' }}>
-                Seguimiento en tiempo real y simulación de preparación en barra.
-              </p>
             </div>
 
-            {orders.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '40px 20px', background: '#FFFFFF', borderRadius: '16px', border: '1px solid #E8DED1' }}>
-                <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '8px' }}>☕</span>
-                <p style={{ fontWeight: '700', color: '#2C1810', marginBottom: '8px' }}>No tienes órdenes activas</p>
-                <button
-                  onClick={() => setActiveTab('menu')}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              {orders.map((ord, idx) => (
+                <div
+                  key={ord.id}
                   style={{
-                    background: '#C28E3A',
-                    color: 'white',
-                    border: 'none',
-                    padding: '8px 18px',
-                    borderRadius: '20px',
-                    fontWeight: '700',
-                    fontSize: '0.85rem',
-                    cursor: 'pointer'
+                    background: '#18110D',
+                    borderRadius: '16px',
+                    border: idx === 0 ? '1px solid #D4A373' : '1px solid #281B13',
+                    padding: '16px',
+                    boxShadow: idx === 0 ? '0 6px 20px rgba(212,163,115,0.15)' : 'none'
                   }}
                 >
-                  Ir al Menú y Pedir
-                </button>
-              </div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                {orders.map((ord, idx) => (
-                  <div
-                    key={ord.id}
-                    style={{
-                      background: '#FFFFFF',
-                      borderRadius: '16px',
-                      border: idx === 0 ? '2px solid #C28E3A' : '1px solid #E8DED1',
-                      padding: '16px',
-                      boxShadow: idx === 0 ? '0 6px 18px rgba(194, 142, 58, 0.12)' : '0 2px 6px rgba(0,0,0,0.03)'
-                    }}
-                  >
-                    {/* Header */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                      <div>
-                        <span style={{ fontWeight: '800', color: '#2C1810', fontSize: '0.95rem' }}>{ord.id}</span>
-                        <span style={{ fontSize: '0.75rem', color: '#A19184', marginLeft: '8px' }}>{ord.date}</span>
-                      </div>
-                      <span style={{
-                        background: ord.status.includes('Listo') ? '#DCFCE7' : '#FEF3C7',
-                        color: ord.status.includes('Listo') ? '#15803D' : '#92400E',
-                        fontSize: '0.72rem',
-                        fontWeight: '800',
-                        padding: '3px 8px',
-                        borderRadius: '8px'
-                      }}>
-                        {ord.status}
-                      </span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                    <div>
+                      <span style={{ fontWeight: '800', color: '#F7EFE8', fontSize: '0.95rem' }}>{ord.id}</span>
+                      <span style={{ fontSize: '0.72rem', color: '#7E6E63', marginLeft: '8px' }}>{ord.date}</span>
                     </div>
-
-                    {/* Preparation Stepper Timeline */}
-                    <div style={{
-                      background: '#FAF7F2',
-                      borderRadius: '10px',
-                      padding: '10px',
-                      marginBottom: '12px'
+                    <span style={{
+                      background: ord.status.includes('Listo') ? 'rgba(34,197,94,0.15)' : 'rgba(212,163,115,0.15)',
+                      color: ord.status.includes('Listo') ? '#22C55E' : '#D4A373',
+                      border: `1px solid ${ord.status.includes('Listo') ? 'rgba(34,197,94,0.3)' : 'rgba(212,163,115,0.3)'}`,
+                      fontSize: '0.7rem',
+                      fontWeight: '800',
+                      padding: '3px 8px',
+                      borderRadius: '8px'
                     }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
-                        {[
-                          { step: 1, label: 'Recibido' },
-                          { step: 2, label: 'Molienda & Barista' },
-                          { step: 3, label: 'Listo en Barra' }
-                        ].map(st => {
-                          const isDone = (ord.statusStep || 2) >= st.step;
-                          return (
-                            <div key={st.step} style={{ textAlign: 'center', flex: 1 }}>
-                              <div style={{
-                                width: '22px',
-                                height: '22px',
-                                borderRadius: '50%',
-                                background: isDone ? '#C28E3A' : '#E8DED1',
-                                color: 'white',
-                                fontSize: '0.7rem',
-                                fontWeight: '800',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                margin: '0 auto 4px'
-                              }}>
-                                {isDone ? '✓' : st.step}
-                              </div>
-                              <span style={{ fontSize: '0.68rem', fontWeight: isDone ? '700' : '500', color: isDone ? '#2C1810' : '#A19184' }}>
-                                {st.label}
-                              </span>
+                      {ord.status}
+                    </span>
+                  </div>
+
+                  {/* Preparation Stepper Timeline */}
+                  <div style={{ background: '#120A06', borderRadius: '10px', padding: '10px', marginBottom: '12px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      {[
+                        { step: 1, label: 'Recibido' },
+                        { step: 2, label: 'Molienda & Barista' },
+                        { step: 3, label: 'Listo en Barra' }
+                      ].map(st => {
+                        const isDone = (ord.statusStep || 2) >= st.step;
+                        return (
+                          <div key={st.step} style={{ textAlign: 'center', flex: 1 }}>
+                            <div style={{
+                              width: '22px',
+                              height: '22px',
+                              borderRadius: '50%',
+                              background: isDone ? '#D4A373' : '#281B13',
+                              color: isDone ? '#140E0A' : '#7E6E63',
+                              fontSize: '0.7rem',
+                              fontWeight: '800',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              margin: '0 auto 4px'
+                            }}>
+                              {isDone ? '✓' : st.step}
                             </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* Items List */}
-                    <div style={{ borderTop: '1px solid #F1EAE0', paddingTop: '10px', marginBottom: '10px' }}>
-                      {ord.items.map((item, i) => (
-                        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', marginBottom: '4px' }}>
-                          <span style={{ color: '#2C1810' }}>
-                            <strong>{item.qty || 1}x</strong> {item.name} <small style={{ color: '#A19184' }}>({item.size || ''})</small>
-                          </span>
-                          <span style={{ fontWeight: '700', color: '#726256' }}>
-                            ${((item.price || 5.0) * (item.qty || 1)).toFixed(2)}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Footer */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #F1EAE0', paddingTop: '8px' }}>
-                      <span style={{ fontSize: '0.75rem', color: '#726256' }}>
-                        📍 {ord.pickupType}
-                      </span>
-                      <div>
-                        <span style={{ fontSize: '0.8rem', color: '#A19184', marginRight: '6px' }}>Total Pagado:</span>
-                        <strong style={{ fontSize: '1rem', color: '#C28E3A' }}>${ord.total.toFixed(2)}</strong>
-                      </div>
+                            <span style={{ fontSize: '0.65rem', fontWeight: isDone ? '700' : '500', color: isDone ? '#F7EFE8' : '#7E6E63' }}>
+                              {st.label}
+                            </span>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
+
+                  {/* Items list */}
+                  <div style={{ borderTop: '1px solid #281B13', paddingTop: '10px', marginBottom: '10px' }}>
+                    {ord.items.map((item, i) => (
+                      <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', marginBottom: '4px' }}>
+                        <span style={{ color: '#F7EFE8' }}>
+                          <strong style={{ color: '#D4A373' }}>{item.qty || 1}x</strong> {item.name} <small style={{ color: '#7E6E63' }}>({item.size || ''})</small>
+                        </span>
+                        <span style={{ fontWeight: '700', color: '#B8A79B' }}>
+                          ${((item.price || 5.0) * (item.qty || 1)).toFixed(2)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Total and pickup */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #281B13', paddingTop: '8px' }}>
+                    <span style={{ fontSize: '0.72rem', color: '#B8A79B' }}>
+                      📍 {ord.pickupType}
+                    </span>
+                    <div>
+                      <span style={{ fontSize: '0.75rem', color: '#7E6E63', marginRight: '6px' }}>Total Pagado:</span>
+                      <strong style={{ fontSize: '1.05rem', color: '#D4A373' }}>${ord.total.toFixed(2)}</strong>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
         {/* ==================== TAB 4: PERFIL ==================== */}
         {activeTab === 'perfil' && (
           <div className="fade-in">
-            {/* User Profile Card */}
+            {/* VIP Card Dark Premium */}
             <div style={{
-              background: '#FFFFFF',
+              background: '#18110D',
               borderRadius: '20px',
-              border: '1px solid #E8DED1',
+              border: '1px solid #281B13',
               padding: '20px',
               textAlign: 'center',
-              boxShadow: '0 4px 14px rgba(44, 24, 16, 0.05)',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.6)',
               marginBottom: '16px'
             }}>
               <div style={{
                 width: '74px',
                 height: '74px',
                 borderRadius: '50%',
-                background: '#FAF7F2',
-                border: '3px solid #C28E3A',
+                background: '#140E0A',
+                border: '2px solid #D4A373',
                 margin: '0 auto 12px',
                 overflow: 'hidden'
               }}>
@@ -951,14 +968,15 @@ export default function App() {
                 />
               </div>
 
-              <h2 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#2C1810', marginBottom: '2px' }}>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', color: '#F7EFE8', marginBottom: '2px' }}>
                 Valentina Restrepo
               </h2>
               <span style={{
                 display: 'inline-block',
-                background: '#FEF3C7',
-                color: '#92400E',
-                fontSize: '0.75rem',
+                background: 'rgba(212,163,115,0.15)',
+                color: '#D4A373',
+                border: '1px solid rgba(212,163,115,0.3)',
+                fontSize: '0.72rem',
                 fontWeight: '800',
                 padding: '3px 10px',
                 borderRadius: '12px',
@@ -967,49 +985,33 @@ export default function App() {
                 ⭐ MIEMBRO VIP ORO &bull; BARISTA CLUB
               </span>
 
-              {/* Loyalty points card */}
+              {/* Loyalty meter */}
               <div style={{
-                background: 'linear-gradient(135deg, #2C1810 0%, #3D2214 100%)',
-                color: '#FAF7F2',
+                background: 'linear-gradient(135deg, #140C08 0%, #20130D 100%)',
+                border: '1px solid rgba(212,163,115,0.25)',
                 borderRadius: '14px',
                 padding: '16px',
                 textAlign: 'left'
               }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '0.75rem', color: '#D4A373', fontWeight: '700', textTransform: 'uppercase' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <span style={{ fontSize: '0.72rem', color: '#D4A373', fontWeight: '800', textTransform: 'uppercase' }}>
                     Saldo RapidBeans
                   </span>
-                  <span style={{ fontSize: '1.2rem' }}>☕✨</span>
+                  <span style={{ fontSize: '1.1rem' }}>☕✨</span>
                 </div>
-                <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#FFFFFF', marginBottom: '6px' }}>
-                  1,140 <small style={{ fontSize: '0.85rem', fontWeight: '500', color: '#D4A373' }}>pts</small>
+                <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#F7EFE8', marginBottom: '6px' }}>
+                  1,140 <small style={{ fontSize: '0.8rem', color: '#D4A373' }}>pts</small>
                 </div>
-                <div style={{ background: 'rgba(255,255,255,0.15)', height: '6px', borderRadius: '4px', overflow: 'hidden', marginBottom: '6px' }}>
-                  <div style={{ width: '85%', height: '100%', background: '#C28E3A' }}></div>
+                <div style={{ background: '#261811', height: '6px', borderRadius: '4px', overflow: 'hidden', marginBottom: '6px' }}>
+                  <div style={{ width: '85%', height: '100%', background: '#D4A373' }}></div>
                 </div>
-                <span style={{ fontSize: '0.72rem', color: '#D6CBC2' }}>
-                  ¡Solo 60 pts más para tu próximo <strong>Rey de los cafes</strong> de cortesía!
+                <span style={{ fontSize: '0.7rem', color: '#B8A79B' }}>
+                  ¡Faltan 60 pts para tu próximo <strong>Rey de los cafes</strong> de cortesía!
                 </span>
               </div>
             </div>
 
-            {/* Preferences & Navigation Links */}
-            <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid #E8DED1', padding: '8px', marginBottom: '16px' }}>
-              <div style={{ padding: '10px 14px', borderBottom: '1px solid #F1EAE0', display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: '0.85rem', color: '#726256' }}>Bebida predilecta</span>
-                <strong style={{ fontSize: '0.85rem', color: '#2C1810' }}>Rey de los cafes</strong>
-              </div>
-              <div style={{ padding: '10px 14px', borderBottom: '1px solid #F1EAE0', display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: '0.85rem', color: '#726256' }}>Leche favorita</span>
-                <strong style={{ fontSize: '0.85rem', color: '#2C1810' }}>Leche de Granja</strong>
-              </div>
-              <div style={{ padding: '10px 14px', display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: '0.85rem', color: '#726256' }}>Método de pago</span>
-                <strong style={{ fontSize: '0.85rem', color: '#2C1810' }}>Apple Pay (•••• 4242)</strong>
-              </div>
-            </div>
-
-            {/* Quick links to Web & Admin */}
+            {/* Navigation links */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <a
                 href="/"
@@ -1018,17 +1020,17 @@ export default function App() {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '12px 16px',
-                  background: '#FFFFFF',
-                  border: '1px solid #E8DED1',
+                  background: '#18110D',
+                  border: '1px solid #281B13',
                   borderRadius: '12px',
                   textDecoration: 'none',
-                  color: '#2C1810',
-                  fontSize: '0.88rem',
+                  color: '#F7EFE8',
+                  fontSize: '0.85rem',
                   fontWeight: '600'
                 }}
               >
-                <span>🌐 Ir a la Landing Page E-commerce</span>
-                <span>→</span>
+                <span>🌐 Ir a la Landing Page Dark E-commerce</span>
+                <span style={{ color: '#D4A373' }}>→</span>
               </a>
               <a
                 href="/admin"
@@ -1037,17 +1039,17 @@ export default function App() {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '12px 16px',
-                  background: '#FFFFFF',
-                  border: '1px solid #E8DED1',
+                  background: '#18110D',
+                  border: '1px solid #281B13',
                   borderRadius: '12px',
                   textDecoration: 'none',
-                  color: '#2C1810',
-                  fontSize: '0.88rem',
+                  color: '#F7EFE8',
+                  fontSize: '0.85rem',
                   fontWeight: '600'
                 }}
               >
                 <span>⚙️ Abrir Panel Administrativo & Métricas</span>
-                <span>→</span>
+                <span style={{ color: '#D4A373' }}>→</span>
               </a>
 
               {deferredPrompt && (
@@ -1055,13 +1057,13 @@ export default function App() {
                   onClick={handleInstallClick}
                   style={{
                     marginTop: '8px',
-                    background: '#C28E3A',
-                    color: 'white',
+                    background: '#D4A373',
+                    color: '#140E0A',
                     border: 'none',
                     padding: '12px',
                     borderRadius: '12px',
-                    fontWeight: '700',
-                    fontSize: '0.88rem',
+                    fontWeight: '800',
+                    fontSize: '0.85rem',
                     cursor: 'pointer'
                   }}
                 >
@@ -1073,7 +1075,7 @@ export default function App() {
         )}
       </main>
 
-      {/* Floating Cart Bar (Visible if cart has items and not on cart modal) */}
+      {/* Floating Cart Trigger */}
       {cart.length > 0 && !isCartOpen && (
         <div style={{
           position: 'fixed',
@@ -1082,21 +1084,22 @@ export default function App() {
           transform: 'translateX(-50%)',
           width: 'calc(100% - 32px)',
           maxWidth: '428px',
-          background: '#2C1810',
-          color: '#FAF7F2',
+          background: '#1F140D',
+          border: '1px solid #D4A373',
+          color: '#F7EFE8',
           padding: '12px 18px',
           borderRadius: '16px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          boxShadow: '0 10px 25px rgba(44, 24, 16, 0.25)',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.8)',
           zIndex: 45
         }} className="fade-in">
           <div>
-            <div style={{ fontSize: '0.75rem', color: '#D4A373', fontWeight: '700' }}>
+            <div style={{ fontSize: '0.72rem', color: '#D4A373', fontWeight: '800' }}>
               {totalItemsCount} {totalItemsCount === 1 ? 'bebida seleccionada' : 'bebidas seleccionadas'}
             </div>
-            <div style={{ fontSize: '1.15rem', fontWeight: '800' }}>
+            <div style={{ fontSize: '1.15rem', fontWeight: '800', color: '#F7EFE8' }}>
               ${cartTotal.toFixed(2)}
             </div>
           </div>
@@ -1104,13 +1107,13 @@ export default function App() {
           <button
             onClick={() => setIsCartOpen(true)}
             style={{
-              background: '#C28E3A',
-              color: 'white',
+              background: '#D4A373',
+              color: '#140E0A',
               border: 'none',
               padding: '8px 18px',
               borderRadius: '20px',
-              fontWeight: '700',
-              fontSize: '0.85rem',
+              fontWeight: '800',
+              fontSize: '0.82rem',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -1123,7 +1126,7 @@ export default function App() {
         </div>
       )}
 
-      {/* ==================== BOTTOM NAVIGATION TABS ==================== */}
+      {/* Bottom Navigation Bar Dark */}
       <nav style={{
         position: 'fixed',
         bottom: 0,
@@ -1131,18 +1134,19 @@ export default function App() {
         transform: 'translateX(-50%)',
         width: '100%',
         maxWidth: '460px',
-        background: '#FFFFFF',
-        borderTop: '1px solid #E8DED1',
+        background: 'rgba(18, 12, 8, 0.96)',
+        backdropFilter: 'blur(16px)',
+        borderTop: '1px solid #281B13',
         display: 'flex',
         justifyContent: 'space-around',
         padding: '8px 6px calc(8px + env(safe-area-inset-bottom, 0px))',
         zIndex: 50,
-        boxShadow: '0 -4px 16px rgba(44, 24, 16, 0.05)'
+        boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.6)'
       }}>
         {[
           { id: 'menu', label: 'Menú', icon: '☕' },
           { id: 'ofertas', label: 'Ofertas', icon: '🏷️' },
-          { id: 'ordenes', label: 'Órdenes', icon: '🧾', badge: orders.length > 0 ? orders[0].status : null },
+          { id: 'ordenes', label: 'Órdenes', icon: '🧾' },
           { id: 'perfil', label: 'Perfil', icon: '👤' }
         ].map(tab => {
           const isActive = activeTab === tab.id;
@@ -1161,7 +1165,7 @@ export default function App() {
                 borderRadius: '12px',
                 cursor: 'pointer',
                 position: 'relative',
-                color: isActive ? '#C28E3A' : '#76685E',
+                color: isActive ? '#D4A373' : '#7E6E63',
                 transition: 'all 0.15s ease'
               }}
             >
@@ -1170,15 +1174,14 @@ export default function App() {
                 {tab.label}
               </span>
 
-              {tab.id === 'ordenes' && orders.length > 0 && orders[0].status.includes('Molienda') && (
+              {isActive && (
                 <span style={{
                   position: 'absolute',
-                  top: '2px',
-                  right: '12px',
-                  width: '8px',
-                  height: '8px',
-                  background: '#D97706',
-                  borderRadius: '50%'
+                  bottom: '-2px',
+                  width: '16px',
+                  height: '2px',
+                  background: '#D4A373',
+                  borderRadius: '2px'
                 }}></span>
               )}
             </button>
@@ -1186,7 +1189,7 @@ export default function App() {
         })}
       </nav>
 
-      {/* ==================== CUSTOMIZE PRODUCT MODAL ==================== */}
+      {/* Customize Modal Dark */}
       {customizingItem && (
         <div style={{
           position: 'fixed',
@@ -1194,15 +1197,16 @@ export default function App() {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'rgba(36, 22, 15, 0.6)',
-          backdropFilter: 'blur(4px)',
+          background: 'rgba(0, 0, 0, 0.8)',
+          backdropFilter: 'blur(6px)',
           display: 'flex',
           alignItems: 'flex-end',
           justifyContent: 'center',
           zIndex: 1000
         }}>
           <div style={{
-            background: '#FFFFFF',
+            background: '#18110D',
+            border: '1px solid rgba(212,163,115,0.3)',
             width: '100%',
             maxWidth: '460px',
             borderTopLeftRadius: '24px',
@@ -1214,18 +1218,18 @@ export default function App() {
             
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
               <div>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#2C1810' }}>{customizingItem.name}</h3>
-                <span style={{ fontSize: '0.75rem', color: '#C28E3A', fontWeight: '700' }}>⭐ {customizingItem.specialtyLevel}</span>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', color: '#F7EFE8' }}>{customizingItem.name}</h3>
+                <span style={{ fontSize: '0.72rem', color: '#D4A373', fontWeight: '700' }}>⭐ {customizingItem.specialtyLevel}</span>
               </div>
               <button
                 onClick={() => setCustomizingItem(null)}
-                style={{ background: '#F4EEE5', border: 'none', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}
+                style={{ background: '#281B13', border: 'none', color: '#F7EFE8', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}
               >✕</button>
             </div>
 
-            {/* Size Options */}
+            {/* Size */}
             <div style={{ marginBottom: '16px' }}>
-              <label style={{ fontSize: '0.8rem', fontWeight: '700', color: '#726256', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: '800', color: '#D4A373', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
                 Tamaño de Vaso:
               </label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
@@ -1243,23 +1247,23 @@ export default function App() {
                       fontSize: '0.75rem',
                       fontWeight: '700',
                       border: '1px solid',
-                      borderColor: customSize === sz.label ? '#C28E3A' : '#E8DED1',
-                      background: customSize === sz.label ? '#FFF9ED' : '#FFFFFF',
-                      color: customSize === sz.label ? '#A67528' : '#2C1810',
+                      borderColor: customSize === sz.label ? '#D4A373' : '#281B13',
+                      background: customSize === sz.label ? 'rgba(212,163,115,0.15)' : '#140E0A',
+                      color: customSize === sz.label ? '#D4A373' : '#B8A79B',
                       cursor: 'pointer',
                       textAlign: 'center'
                     }}
                   >
                     <div>{sz.label.split(' ')[0]}</div>
-                    <small style={{ fontSize: '0.68rem', color: '#A19184' }}>{sz.delta}</small>
+                    <small style={{ fontSize: '0.68rem', color: '#7E6E63' }}>{sz.delta}</small>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Milk Options */}
+            {/* Milk */}
             <div style={{ marginBottom: '16px' }}>
-              <label style={{ fontSize: '0.8rem', fontWeight: '700', color: '#726256', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: '800', color: '#D4A373', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
                 Tipo de Leche / Base:
               </label>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -1278,17 +1282,17 @@ export default function App() {
                       alignItems: 'center',
                       padding: '10px 14px',
                       borderRadius: '10px',
-                      fontSize: '0.82rem',
+                      fontSize: '0.8rem',
                       fontWeight: '600',
                       border: '1px solid',
-                      borderColor: customMilk === m.label ? '#C28E3A' : '#F1EAE0',
-                      background: customMilk === m.label ? '#FFF9ED' : '#FFFFFF',
-                      color: '#2C1810',
+                      borderColor: customMilk === m.label ? '#D4A373' : '#281B13',
+                      background: customMilk === m.label ? 'rgba(212,163,115,0.15)' : '#140E0A',
+                      color: '#F7EFE8',
                       cursor: 'pointer'
                     }}
                   >
                     <span>{m.label}</span>
-                    <span style={{ fontSize: '0.75rem', color: '#C28E3A', fontWeight: '700' }}>{m.extra}</span>
+                    <span style={{ fontSize: '0.72rem', color: '#D4A373', fontWeight: '700' }}>{m.extra}</span>
                   </button>
                 ))}
               </div>
@@ -1296,7 +1300,7 @@ export default function App() {
 
             {/* Sweetness */}
             <div style={{ marginBottom: '22px' }}>
-              <label style={{ fontSize: '0.8rem', fontWeight: '700', color: '#726256', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: '800', color: '#D4A373', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
                 Nivel de Dulzor:
               </label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
@@ -1312,12 +1316,12 @@ export default function App() {
                     style={{
                       padding: '8px 10px',
                       borderRadius: '10px',
-                      fontSize: '0.75rem',
+                      fontSize: '0.72rem',
                       fontWeight: '600',
                       border: '1px solid',
-                      borderColor: customSweetness === sw ? '#C28E3A' : '#E8DED1',
-                      background: customSweetness === sw ? '#FFF9ED' : '#FFFFFF',
-                      color: customSweetness === sw ? '#A67528' : '#726256',
+                      borderColor: customSweetness === sw ? '#D4A373' : '#281B13',
+                      background: customSweetness === sw ? 'rgba(212,163,115,0.15)' : '#140E0A',
+                      color: customSweetness === sw ? '#D4A373' : '#B8A79B',
                       cursor: 'pointer',
                       textAlign: 'left'
                     }}
@@ -1328,20 +1332,18 @@ export default function App() {
               </div>
             </div>
 
-            {/* Action button */}
             <button
               onClick={handleAddToCart}
               style={{
                 width: '100%',
-                background: '#2C1810',
-                color: 'white',
+                background: '#D4A373',
+                color: '#140E0A',
                 border: 'none',
                 padding: '14px',
                 borderRadius: '16px',
                 fontSize: '0.95rem',
                 fontWeight: '800',
-                cursor: 'pointer',
-                boxShadow: '0 8px 20px rgba(44, 24, 16, 0.2)'
+                cursor: 'pointer'
               }}
             >
               ☕ Agregar a la Orden
@@ -1350,7 +1352,7 @@ export default function App() {
         </div>
       )}
 
-      {/* ==================== CART & SIMULATED CHECKOUT DRAWER ==================== */}
+      {/* Cart & Checkout Drawer Dark */}
       {isCartOpen && (
         <div style={{
           position: 'fixed',
@@ -1358,15 +1360,16 @@ export default function App() {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'rgba(36, 22, 15, 0.65)',
-          backdropFilter: 'blur(5px)',
+          background: 'rgba(0, 0, 0, 0.85)',
+          backdropFilter: 'blur(8px)',
           display: 'flex',
           alignItems: 'flex-end',
           justifyContent: 'center',
           zIndex: 1000
         }}>
           <div style={{
-            background: '#FFFFFF',
+            background: '#18110D',
+            border: '1px solid rgba(212,163,115,0.3)',
             width: '100%',
             maxWidth: '460px',
             borderTopLeftRadius: '24px',
@@ -1377,25 +1380,24 @@ export default function App() {
             flexDirection: 'column'
           }} className="slide-up">
             
-            {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
               <div>
-                <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#2C1810' }}>Tu Orden Actual</h3>
-                <span style={{ fontSize: '0.75rem', color: '#726256' }}>Simulación de compra Coffee Rapid</span>
+                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', color: '#F7EFE8' }}>Tu Orden Actual</h3>
+                <span style={{ fontSize: '0.72rem', color: '#7E6E63' }}>Simulación de compra Coffee Rapid</span>
               </div>
               <button
                 onClick={() => setIsCartOpen(false)}
-                style={{ background: '#F4EEE5', border: 'none', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}
+                style={{ background: '#281B13', border: 'none', color: '#F7EFE8', width: '32px', height: '32px', borderRadius: '50%', cursor: 'pointer', fontSize: '1rem' }}
               >✕</button>
             </div>
 
-            {/* Cart Items List */}
+            {/* Items */}
             <div style={{ flex: 1, overflowY: 'auto', marginBottom: '16px', paddingRight: '4px' }}>
               {cart.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '30px 10px', color: '#726256' }}>
+                <div style={{ textAlign: 'center', padding: '30px 10px', color: '#7E6E63' }}>
                   <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '8px' }}>🛒</span>
-                  <p style={{ fontWeight: '700' }}>El carrito está vacío</p>
-                  <small>Agrega tus bebidas favoritas desde la pestaña Menú.</small>
+                  <p style={{ fontWeight: '700', color: '#F7EFE8' }}>El carrito está vacío</p>
+                  <small>Agrega tus bebidas favoritas desde el Menú.</small>
                 </div>
               ) : (
                 cart.map(item => (
@@ -1406,31 +1408,30 @@ export default function App() {
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       padding: '12px 0',
-                      borderBottom: '1px solid #F1EAE0'
+                      borderBottom: '1px solid #281B13'
                     }}
                   >
                     <div>
-                      <div style={{ fontWeight: '700', fontSize: '0.9rem', color: '#2C1810' }}>
+                      <div style={{ fontWeight: '700', fontSize: '0.9rem', color: '#F7EFE8' }}>
                         {item.name}
                       </div>
-                      <div style={{ fontSize: '0.72rem', color: '#A19184' }}>
+                      <div style={{ fontSize: '0.7rem', color: '#7E6E63' }}>
                         {item.size} &bull; {item.milk}
                       </div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: '800', color: '#C28E3A', marginTop: '2px' }}>
+                      <div style={{ fontSize: '0.88rem', fontWeight: '800', color: '#D4A373', marginTop: '2px' }}>
                         ${(item.price * item.quantity).toFixed(2)}
                       </div>
                     </div>
 
-                    {/* Quantity controls */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#FAF7F2', borderRadius: '20px', padding: '4px 8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#120A06', borderRadius: '20px', padding: '4px 8px', border: '1px solid #281B13' }}>
                       <button
                         onClick={() => updateQuantity(item.cartId, -1)}
-                        style={{ border: 'none', background: 'transparent', fontWeight: '800', fontSize: '0.9rem', color: '#726256', cursor: 'pointer', width: '20px' }}
+                        style={{ border: 'none', background: 'transparent', fontWeight: '800', fontSize: '0.9rem', color: '#B8A79B', cursor: 'pointer', width: '20px' }}
                       >-</button>
-                      <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#2C1810' }}>{item.quantity}</span>
+                      <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#F7EFE8' }}>{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.cartId, 1)}
-                        style={{ border: 'none', background: 'transparent', fontWeight: '800', fontSize: '0.9rem', color: '#726256', cursor: 'pointer', width: '20px' }}
+                        style={{ border: 'none', background: 'transparent', fontWeight: '800', fontSize: '0.9rem', color: '#B8A79B', cursor: 'pointer', width: '20px' }}
                       >+</button>
                     </div>
                   </div>
@@ -1438,19 +1439,19 @@ export default function App() {
               )}
             </div>
 
-            {/* Calculations & Order details */}
+            {/* Totals */}
             {cart.length > 0 && (
               <div>
-                {/* Coupon badge if applied */}
                 {appliedCoupon && (
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    background: '#DCFCE7',
-                    color: '#15803D',
+                    background: 'rgba(34,197,94,0.15)',
+                    border: '1px solid rgba(34,197,94,0.3)',
+                    color: '#22C55E',
                     padding: '8px 12px',
                     borderRadius: '10px',
-                    fontSize: '0.78rem',
+                    fontSize: '0.75rem',
                     fontWeight: '700',
                     marginBottom: '10px'
                   }}>
@@ -1459,39 +1460,36 @@ export default function App() {
                   </div>
                 )}
 
-                {/* Totals */}
-                <div style={{ background: '#FAF7F2', borderRadius: '12px', padding: '12px', marginBottom: '14px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', color: '#726256', marginBottom: '4px' }}>
+                <div style={{ background: '#120A06', border: '1px solid #281B13', borderRadius: '12px', padding: '12px', marginBottom: '14px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#7E6E63', marginBottom: '4px' }}>
                     <span>Subtotal:</span>
                     <span>${cartSubtotal.toFixed(2)}</span>
                   </div>
                   {discountAmount > 0 && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', color: '#15803D', marginBottom: '4px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#22C55E', marginBottom: '4px' }}>
                       <span>Descuento aplicado:</span>
                       <span>- ${discountAmount.toFixed(2)}</span>
                     </div>
                   )}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.05rem', fontWeight: '800', color: '#2C1810', borderTop: '1px solid #E8DED1', paddingTop: '6px', marginTop: '4px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.1rem', fontWeight: '800', color: '#F7EFE8', borderTop: '1px solid #281B13', paddingTop: '6px', marginTop: '4px' }}>
                     <span>Total a Pagar:</span>
-                    <span style={{ color: '#C28E3A' }}>${cartTotal.toFixed(2)}</span>
+                    <span style={{ color: '#D4A373' }}>${cartTotal.toFixed(2)}</span>
                   </div>
                 </div>
 
-                {/* Confirm Button */}
                 <button
                   onClick={() => handleConfirmOrder('Retiro en Barra Express')}
                   style={{
                     width: '100%',
-                    background: '#C28E3A',
-                    color: 'white',
+                    background: '#D4A373',
+                    color: '#140E0A',
                     border: 'none',
                     padding: '14px',
                     borderRadius: '16px',
                     fontSize: '0.95rem',
                     fontWeight: '800',
                     cursor: 'pointer',
-                    boxShadow: '0 8px 20px rgba(194, 142, 58, 0.3)',
-                    marginBottom: '8px'
+                    boxShadow: '0 8px 24px rgba(212,163,115,0.35)'
                   }}
                 >
                   🚀 Confirmar y Simular Compra (${cartTotal.toFixed(2)})
